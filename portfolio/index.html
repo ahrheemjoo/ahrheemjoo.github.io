@@ -1,10 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ah-Rheem Joo | Portfolio</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background: #fef6fb;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      transition: background 1s ease;
+    }
+
+    header:hover {
+      background: linear-gradient(135deg, #ffd1dc, #fbc2eb);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in 0.5s forwards;
+      opacity: 0;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    /* Decorative Portfolio Header */
+    #portfolio-header {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #ffd1dc;
+      color: #333;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      animation: bounce 2s infinite;
+      cursor: default;
+      user-select: none;
+    }
+
+    /* Main content */
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+      padding: 25px;
+      background: #fff0f6;
+      border-radius: 15px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    section h2 {
+      color: #ff87ab;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #a1c4fd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .btn:hover {
+      background: #c2e9fb;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ffb6c1;
+      color: #fff;
+      margin-top: 40px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+  </style>
 </head>
 <body>
-  <h1>My Portfolio</h1>
-  <p>Here are my projects...</p>
+
+  <header>
+    <h1>Ah-Rheem Joo</h1>
+    <p>Welcome to my portfolio!</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <br>
+    <div id="portfolio-header">Portfolio</div>
+  </header>
+
+  <main>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <ul>
+        <li>Project 1 – A brief description <a class="btn" href="/portfolio">View Portfolio</a></li>
+        <li>Project 2 – A brief description <a class="btn" href="/portfolio">View Portfolio</a></li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: <a href="mailto:ahrheemjoo@gmail.com">ahrheemjoo@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/ahrheem-joo" target="_blank">https://www.linkedin.com/in/ahrheem-joo</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/ahrheem" target="_blank">@ahrheem</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ah-Rheem Joo. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
