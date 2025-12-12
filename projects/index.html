@@ -294,6 +294,167 @@
             66% { transform: translate(-50px, 100px) rotate(240deg); }
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 60px rgba(130, 197, 255, 0.5);
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(100px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #ff91c7, #82c5ff);
+            padding: 40px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-header .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section h3 {
+            color: #ff91c7;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-section p {
+            color: #6b5b7a;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-section li {
+            color: #6b5b7a;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .modal-section li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .modal-tag {
+            background: rgba(130, 197, 255, 0.3);
+            color: #5a8fc4;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-button {
+            flex: 1;
+            background: linear-gradient(135deg, #82c5ff, #ff91c7);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(130, 197, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 145, 199, 0.5);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .projects-grid { 
@@ -304,6 +465,18 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
+            }
+            .modal-content {
+                margin: 10px;
+            }
+            .modal-header h2 {
+                font-size: 2rem;
+            }
+            .modal-body {
+                padding: 25px;
+            }
+            .modal-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -432,6 +605,35 @@
         </div>
     </div>
 
+    <!-- Modal for Project Details -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">×</button>
+                <div class="modal-icon" id="modalIcon">🌟</div>
+                <h2 id="modalTitle">Project Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-tags" id="modalTags"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>About This Project</h3>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>Key Features</h3>
+                    <ul id="modalFeatures"></ul>
+                </div>
+                <div class="modal-section">
+                    <h3>Technologies Used</h3>
+                    <p id="modalTech"></p>
+                </div>
+                <div class="modal-buttons" id="modalButtons"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Create twinkling stars
         const starsContainer = document.getElementById('stars');
@@ -509,6 +711,184 @@
                     }, i * 100);
                 }
             });
+        });
+
+        // Project data with detailed information
+        const projectData = {
+            'Stellar Dashboard': {
+                icon: '🌟',
+                description: 'An interactive analytics dashboard with real-time data visualization and stunning animations. This project showcases advanced data handling, responsive design, and smooth user interactions to help businesses make data-driven decisions.',
+                features: [
+                    'Real-time data updates with WebSocket integration',
+                    'Interactive charts and graphs using D3.js',
+                    'Customizable dashboard widgets',
+                    'Dark mode support',
+                    'Export data to PDF and Excel'
+                ],
+                tech: 'Built with React for the frontend, Node.js backend, D3.js for visualizations, and connected to REST APIs for real-time data fetching.',
+                tags: ['React', 'D3.js', 'API', 'WebSocket', 'Node.js'],
+                links: [
+                    { text: 'Live Demo', url: '#' },
+                    { text: 'GitHub', url: '#' }
+                ]
+            },
+            'Color Harmony': {
+                icon: '🎨',
+                description: 'A beautiful color palette generator that helps designers discover perfect combinations. Using color theory principles and AI-powered suggestions, it creates harmonious palettes for any project.',
+                features: [
+                    'Generate palettes from images',
+                    'Save and organize favorite palettes',
+                    'Export in multiple formats (CSS, JSON, Adobe)',
+                    'Accessibility checker for color contrast',
+                    'Trending color palettes from the community'
+                ],
+                tech: 'Designed in Figma with a focus on user experience. Implemented using vanilla JavaScript, Canvas API for color manipulation, and local storage for saving palettes.',
+                tags: ['UI/UX', 'Figma', 'Design System', 'JavaScript', 'Canvas API'],
+                links: [
+                    { text: 'View Project', url: '#' },
+                    { text: 'Case Study', url: '#' }
+                ]
+            },
+            'Moonlight Meditation': {
+                icon: '🌙',
+                description: 'A calming meditation app with ambient soundscapes and breathing exercises. Designed to help users find peace and tranquility through guided sessions and soothing visuals.',
+                features: [
+                    'Guided meditation sessions (5-30 minutes)',
+                    'Customizable ambient soundscapes',
+                    'Breathing exercise timers with visual cues',
+                    'Progress tracking and streaks',
+                    'Offline mode for meditation on the go'
+                ],
+                tech: 'Built with Vue.js for reactive UI, Web Audio API for sound mixing, Progressive Web App (PWA) for offline functionality, and IndexedDB for storing user progress.',
+                tags: ['Vue.js', 'Audio API', 'PWA', 'IndexedDB'],
+                links: [
+                    { text: 'Try It', url: '#' },
+                    { text: 'GitHub', url: '#' }
+                ]
+            },
+            'Cosmic Runner': {
+                icon: '🎮',
+                description: 'An endless runner game set in space with beautiful particle effects and smooth gameplay. Navigate through asteroid fields, collect power-ups, and compete for high scores!',
+                features: [
+                    'Smooth 60 FPS gameplay',
+                    'Procedurally generated levels',
+                    'Power-ups and special abilities',
+                    'Leaderboard system',
+                    'Mobile touch controls'
+                ],
+                tech: 'Created using vanilla JavaScript and HTML5 Canvas for rendering. Physics engine built from scratch, particle system for visual effects, and localStorage for saving high scores.',
+                tags: ['JavaScript', 'Canvas', 'Game Dev', 'Physics'],
+                links: [
+                    { text: 'Play Now', url: '#' },
+                    { text: 'Source', url: '#' }
+                ]
+            },
+            'Chat Bubble': {
+                icon: '💬',
+                description: 'A real-time messaging platform with end-to-end encryption and custom emoji reactions. Connect with friends, create groups, and share moments securely.',
+                features: [
+                    'End-to-end encrypted messages',
+                    'Real-time typing indicators',
+                    'Custom emoji reactions and GIF support',
+                    'Voice and video calls',
+                    'File sharing up to 100MB'
+                ],
+                tech: 'Backend built with Node.js and Express, Socket.io for real-time communication, MongoDB for data storage, and crypto libraries for end-to-end encryption.',
+                tags: ['Node.js', 'Socket.io', 'MongoDB', 'Express', 'Encryption'],
+                links: [
+                    { text: 'Demo', url: '#' },
+                    { text: 'GitHub', url: '#' }
+                ]
+            },
+            'Butterfly E-commerce': {
+                icon: '🦋',
+                description: 'A complete redesign of an online store with focus on user experience and conversion. This project transformed a cluttered shopping experience into an elegant, conversion-optimized platform.',
+                features: [
+                    'Streamlined checkout process (3 clicks to purchase)',
+                    'Smart product recommendations',
+                    'Wishlist and comparison tools',
+                    'AR try-on for select products',
+                    'Multi-currency and language support'
+                ],
+                tech: 'Designed with a mobile-first approach in Figma. Complete design system with components, comprehensive branding guidelines, and user flow documentation.',
+                tags: ['E-commerce', 'Branding', 'UI Design', 'Mobile-First', 'UX Research'],
+                links: [
+                    { text: 'View Design', url: '#' },
+                    { text: 'Read More', url: '#' }
+                ]
+            }
+        };
+
+        // Open modal with project details
+        function openModal(projectName) {
+            const data = projectData[projectName];
+            if (!data) return;
+
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = projectName;
+            document.getElementById('modalDescription').textContent = data.description;
+            document.getElementById('modalTech').textContent = data.tech;
+
+            // Set tags
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const tagEl = document.createElement('span');
+                tagEl.className = 'modal-tag';
+                tagEl.textContent = tag;
+                tagsContainer.appendChild(tagEl);
+            });
+
+            // Set features
+            const featuresContainer = document.getElementById('modalFeatures');
+            featuresContainer.innerHTML = '';
+            data.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresContainer.appendChild(li);
+            });
+
+            // Set buttons
+            const buttonsContainer = document.getElementById('modalButtons');
+            buttonsContainer.innerHTML = '';
+            data.links.forEach(link => {
+                const btn = document.createElement('a');
+                btn.className = 'modal-button';
+                btn.textContent = link.text;
+                btn.href = link.url;
+                buttonsContainer.appendChild(btn);
+            });
+
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add click handlers to project cards
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const projectName = this.querySelector('h3').textContent;
+                openModal(projectName);
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
