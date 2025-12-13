@@ -409,7 +409,7 @@
         }
 
         .modal-section li:before {
-            content: "✨";
+            content: "✧";
             position: absolute;
             left: 0;
         }
@@ -495,30 +495,34 @@
 
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="web">Web Apps</button>
-            <button class="filter-btn" data-filter="design">Design</button>
-            <button class="filter-btn" data-filter="game">Games</button>
+
+            <button class="filter-btn" data-filter="UIUX">UI/UX</button>
+            <button class="filter-btn" data-filter="graphics">Graphics</button>
+            <button class="filter-btn" data-filter="illustration">Illustrations</button>
+            <button class="filter-btn" data-filter="traditional">Traditional Art</button>
+            <button class="filter-btn" data-filter="product">Products</button>
+            <button class="filter-btn" data-filter="game">Games / Interactive</button>
         </div>
 
+
         <div class="projects-grid" id="projectsGrid">
-            <div class="project-card" data-category="web">
+            <div class="project-card" data-category="UIUX">
                 <div class="project-image">🌟</div>
                 <div class="project-content">
-                    <h3>Stellar Dashboard</h3>
-                    <p>An interactive analytics dashboard with real-time data visualization and stunning animations.</p>
+                    <h3>Pechii</h3>
+                    <p>A phone app designed for the Lolita fashion community to trade and archive their Lolita coords and pieces.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">D3.js</span>
-                        <span class="tag">API</span>
+                        <span class="tag">Figma</span>
+                        <span class="tag">Adobe Illustrator</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Live Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Full Details</a>
+                        <a href="#" class="project-link">View on Figma</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="design">
+            <div class="project-card" data-category="graphics">
                 <div class="project-image">🎨</div>
                 <div class="project-content">
                     <h3>Color Harmony</h3>
@@ -535,7 +539,7 @@
                 </div>
             </div>
 
-            <div class="project-card" data-category="web">
+            <div class="project-card" data-category="UIUX">
                 <div class="project-image">🌙</div>
                 <div class="project-content">
                     <h3>Moonlight Meditation</h3>
@@ -715,9 +719,9 @@
 
         // Project data with detailed information
         const projectData = {
-            'Stellar Dashboard': {
+            'Pechii': {
                 icon: '🌟',
-                description: 'An interactive analytics dashboard with real-time data visualization and stunning animations. This project showcases advanced data handling, responsive design, and smooth user interactions to help businesses make data-driven decisions.',
+                description: 'A phone app designed for the Lolita fashion community to trade and archive their Lolita coords and pieces.',
                 features: [
                     'Real-time data updates with WebSocket integration',
                     'Interactive charts and graphs using D3.js',
@@ -726,11 +730,18 @@
                     'Export data to PDF and Excel'
                 ],
                 tech: 'Built with React for the frontend, Node.js backend, D3.js for visualizations, and connected to REST APIs for real-time data fetching.',
-                tags: ['React', 'D3.js', 'API', 'WebSocket', 'Node.js'],
+                tags: ['Figma', 'Adobe Illustrator'],
                 links: [
-                    { text: 'Live Demo', url: '#' },
-                    { text: 'GitHub', url: '#' }
+                    {
+                        text: 'Full Details',
+                        url: window.location.origin + window.location.pathname.replace(/\/$/, '') + '/pechii'
+                    },
+                    {
+                        text: 'View on Figma',
+                        url: '#'
+                    }
                 ]
+
             },
             'Color Harmony': {
                 icon: '🎨',
