@@ -174,6 +174,12 @@
         .project-card:nth-child(4) { animation-delay: 0.4s; }
         .project-card:nth-child(5) { animation-delay: 0.5s; }
         .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+        .project-card:nth-child(9) { animation-delay: 0.9s; }
+        .project-card:nth-child(10) { animation-delay: 1s; }
+        .project-card:nth-child(11) { animation-delay: 1.1s; }
+        .project-card:nth-child(12) { animation-delay: 1.2s; }
 
         @keyframes projectAppear {
             from {
@@ -495,114 +501,196 @@
 
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Projects</button>
-
             <button class="filter-btn" data-filter="UIUX">UI/UX</button>
             <button class="filter-btn" data-filter="graphics">Graphics</button>
             <button class="filter-btn" data-filter="illustration">Illustrations</button>
             <button class="filter-btn" data-filter="traditional">Traditional Art</button>
-            <button class="filter-btn" data-filter="product">Products</button>
             <button class="filter-btn" data-filter="game">Games / Interactive</button>
         </div>
 
-
         <div class="projects-grid" id="projectsGrid">
+            <!-- UI/UX Projects -->
             <div class="project-card" data-category="UIUX">
-                <div class="project-image">🌟</div>
+                <div class="project-image">🌸</div>
                 <div class="project-content">
                     <h3>Pechii</h3>
-                    <p>A phone app designed for the Lolita fashion community to trade and archive their Lolita coords and pieces.</p>
-                    <div class="project-tags">
-                        <span class="tag">Figma</span>
-                        <span class="tag">Adobe Illustrator</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="./pechii/" class="project-link">Full Details</a>
-                        <a href="#" class="project-link">View on Figma</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-category="graphics">
-                <div class="project-image">🎨</div>
-                <div class="project-content">
-                    <h3>Color Harmony</h3>
-                    <p>A beautiful color palette generator that helps designers discover perfect combinations.</p>
+                    <p>Lolita Fashion Archiving and Trading App - A phone app for the Lolita fashion community.</p>
                     <div class="project-tags">
                         <span class="tag">UI/UX</span>
                         <span class="tag">Figma</span>
-                        <span class="tag">Design System</span>
+                        <span class="tag">Mobile Design</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">View Project</a>
-                        <a href="#" class="project-link">Case Study</a>
+                        <a href="./pechii/" class="project-link">View Project</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="UIUX">
+            <!-- Interactive/Games Projects -->
+            <div class="project-card" data-category="game">
                 <div class="project-image">🌙</div>
                 <div class="project-content">
-                    <h3>Moonlight Meditation</h3>
-                    <p>A calming meditation app with ambient soundscapes and breathing exercises.</p>
+                    <h3>Seize the Night</h3>
+                    <p>An interactive game experience with engaging gameplay mechanics.</p>
                     <div class="project-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">Audio API</span>
-                        <span class="tag">PWA</span>
+                        <span class="tag">Game Design</span>
+                        <span class="tag">Interactive</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Try It</a>
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link" onclick="openModal('Seize the Night'); return false;">View Details</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card" data-category="game">
-                <div class="project-image">🎮</div>
+                <div class="project-image">🌌</div>
                 <div class="project-content">
-                    <h3>Cosmic Runner</h3>
-                    <p>An endless runner game set in space with beautiful particle effects and smooth gameplay.</p>
+                    <h3>Galactic Sketching Program</h3>
+                    <p>A creative sketching tool set in a galactic environment.</p>
                     <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Canvas</span>
-                        <span class="tag">Game Dev</span>
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Creative Tool</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Play Now</a>
-                        <a href="#" class="project-link">Source</a>
+                        <a href="#" class="project-link" onclick="openModal('Galactic Sketching Program'); return false;">View Details</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="web">
-                <div class="project-image">💬</div>
+            <div class="project-card" data-category="game">
+                <div class="project-image">🐣</div>
                 <div class="project-content">
-                    <h3>Chat Bubble</h3>
-                    <p>A real-time messaging platform with end-to-end encryption and custom emoji reactions.</p>
+                    <h3>Chick Ping Pong</h3>
+                    <p>A fun and playful ping pong game with a unique twist.</p>
                     <div class="project-tags">
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Socket.io</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">Game Design</span>
+                        <span class="tag">Interactive</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">Demo</a>
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link" onclick="openModal('Chick Ping Pong'); return false;">View Details</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="design">
-                <div class="project-image">🦋</div>
+            <div class="project-card" data-category="game">
+                <div class="project-image">🌟</div>
                 <div class="project-content">
-                    <h3>Butterfly E-commerce</h3>
-                    <p>A complete redesign of an online store with focus on user experience and conversion.</p>
+                    <h3>Celentia</h3>
+                    <p>An immersive interactive experience with celestial themes.</p>
                     <div class="project-tags">
-                        <span class="tag">E-commerce</span>
-                        <span class="tag">Branding</span>
-                        <span class="tag">UI Design</span>
+                        <span class="tag">Game Design</span>
+                        <span class="tag">Interactive Media</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">View Design</a>
-                        <a href="#" class="project-link">Read More</a>
+                        <a href="#" class="project-link" onclick="openModal('Celentia'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="game">
+                <div class="project-image">🎤</div>
+                <div class="project-content">
+                    <h3>Heed My Voice</h3>
+                    <p>A voice-interactive game experience.</p>
+                    <div class="project-tags">
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Voice Control</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Heed My Voice'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Illustrations -->
+            <div class="project-card" data-category="illustration">
+                <div class="project-image">⚔️</div>
+                <div class="project-content">
+                    <h3>Combat Character Illustration</h3>
+                    <p>Work in Progress - Dynamic combat character design with detailed armor elements.</p>
+                    <div class="project-tags">
+                        <span class="tag">Character Design</span>
+                        <span class="tag">Digital Art</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Combat Character Illustration'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="illustration">
+                <div class="project-image">👾</div>
+                <div class="project-content">
+                    <h3>Enemy Blob Nifia</h3>
+                    <p>Enemy character design featuring unique blob-based creature concepts.</p>
+                    <div class="project-tags">
+                        <span class="tag">Character Design</span>
+                        <span class="tag">Game Art</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Enemy Blob Nifia'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graphic Design -->
+            <div class="project-card" data-category="graphics">
+                <div class="project-image">🎵</div>
+                <div class="project-content">
+                    <h3>Album Cover Designs</h3>
+                    <p>Song Book for 最後の花弁 (The Meaning of Love) by EGOIST (ft M2U)</p>
+                    <div class="project-tags">
+                        <span class="tag">Graphic Design</span>
+                        <span class="tag">Typography</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Album Cover Designs'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traditional Art -->
+            <div class="project-card" data-category="traditional">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <h3>Recycled Memories</h3>
+                    <p>Traditional art piece exploring themes of memory using watercolor and mixed media.</p>
+                    <div class="project-tags">
+                        <span class="tag">Traditional Art</span>
+                        <span class="tag">Watercolor</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Recycled Memories'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="traditional">
+                <div class="project-image">🐴</div>
+                <div class="project-content">
+                    <h3>Horse Feeding Painting</h3>
+                    <p>Traditional painting capturing a serene moment with detailed brushwork.</p>
+                    <div class="project-tags">
+                        <span class="tag">Traditional Art</span>
+                        <span class="tag">Acrylic Paint</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Horse Feeding Painting'); return false;">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="traditional">
+                <div class="project-image">🗿</div>
+                <div class="project-content">
+                    <h3>Head Sculpture Still Life</h3>
+                    <p>Classical still life study demonstrating mastery of light and shadow.</p>
+                    <div class="project-tags">
+                        <span class="tag">Traditional Art</span>
+                        <span class="tag">Charcoal</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" onclick="openModal('Head Sculpture Still Life'); return false;">View Details</a>
                     </div>
                 </div>
             </div>
@@ -675,9 +763,7 @@
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
                 filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
@@ -717,116 +803,191 @@
             });
         });
 
-        // Project data with detailed information
+        // Project data with detailed information from Wix portfolio
         const projectData = {
             'Pechii': {
-                icon: '🌟',
-                description: 'A phone app designed for the Lolita fashion community to trade and archive their Lolita coords and pieces.',
+                icon: '🌸',
+                description: 'A phone app designed for the Lolita fashion community to trade and archive their Lolita coords and pieces. This UI/UX project focuses on creating an intuitive mobile experience for fashion enthusiasts.',
                 features: [
-                    'Real-time data updates with WebSocket integration',
-                    'Interactive charts and graphs using D3.js',
-                    'Customizable dashboard widgets',
-                    'Dark mode support',
-                    'Export data to PDF and Excel'
+                    'Archive and organize Lolita fashion coordinates',
+                    'Trade pieces with the community',
+                    'Browse curated collections',
+                    'Track wardrobe items',
+                    'Community marketplace integration'
                 ],
-                tech: 'Built with React for the frontend, Node.js backend, D3.js for visualizations, and connected to REST APIs for real-time data fetching.',
-                tags: ['Figma', 'Adobe Illustrator'],
+                tech: 'Designed in Figma with Adobe Illustrator for custom graphics. Mobile-first design approach with a focus on user experience and community engagement.',
+                tags: ['UI/UX', 'Figma', 'Adobe Illustrator', 'Mobile Design'],
+                projectPage: './pechii/',
                 links: [
                     {
-                        text: 'Full Details',
-                        url: window.location.origin + window.location.pathname.replace(/\/$/, '') + '/pechii'
-                    },
-                    {
-                        text: 'View on Figma',
-                        url: '#'
+                        text: 'View Full Project',
+                        url: './pechii/'
                     }
                 ]
-
             },
-            'Color Harmony': {
-                icon: '🎨',
-                description: 'A beautiful color palette generator that helps designers discover perfect combinations. Using color theory principles and AI-powered suggestions, it creates harmonious palettes for any project.',
-                features: [
-                    'Generate palettes from images',
-                    'Save and organize favorite palettes',
-                    'Export in multiple formats (CSS, JSON, Adobe)',
-                    'Accessibility checker for color contrast',
-                    'Trending color palettes from the community'
-                ],
-                tech: 'Designed in Figma with a focus on user experience. Implemented using vanilla JavaScript, Canvas API for color manipulation, and local storage for saving palettes.',
-                tags: ['UI/UX', 'Figma', 'Design System', 'JavaScript', 'Canvas API'],
-                links: [
-                    { text: 'View Project', url: '#' },
-                    { text: 'Case Study', url: '#' }
-                ]
-            },
-            'Moonlight Meditation': {
+            'Seize the Night': {
                 icon: '🌙',
-                description: 'A calming meditation app with ambient soundscapes and breathing exercises. Designed to help users find peace and tranquility through guided sessions and soothing visuals.',
+                description: 'A voice-activated interactive game experience set in a world where day falls to night as you, the Collector, gather stars scattered across the sky.',
                 features: [
-                    'Guided meditation sessions (5-30 minutes)',
-                    'Customizable ambient soundscapes',
-                    'Breathing exercise timers with visual cues',
-                    'Progress tracking and streaks',
-                    'Offline mode for meditation on the go'
+                    'Immersive storyline',
+                    'Interactive gameplay mechanics',
+                    'Atmospheric sound design',
+                    'Unique visual style',
+                    'Engaging player choices'
                 ],
-                tech: 'Built with Vue.js for reactive UI, Web Audio API for sound mixing, Progressive Web App (PWA) for offline functionality, and IndexedDB for storing user progress.',
-                tags: ['Vue.js', 'Audio API', 'PWA', 'IndexedDB'],
-                links: [
-                    { text: 'Try It', url: '#' },
-                    { text: 'GitHub', url: '#' }
-                ]
+                tech: 'Developed using game design principles with a focus on player engagement gameplay.',
+                tags: ['Game Design', 'Interactive Media', 'Storytelling'],
+                projectPage: '#',
+                links: []
             },
-            'Cosmic Runner': {
-                icon: '🎮',
-                description: 'An endless runner game set in space with beautiful particle effects and smooth gameplay. Navigate through asteroid fields, collect power-ups, and compete for high scores!',
+            'Galactic Sketching Program': {
+                icon: '🌌',
+                description: 'A sketching tool set in a galactic environment, allowing users to create art in an interactive space setting. See your sketches come to life!',
                 features: [
-                    'Smooth 60 FPS gameplay',
-                    'Procedurally generated levels',
-                    'Power-ups and special abilities',
-                    'Leaderboard system',
-                    'Mobile touch controls'
+                    'Galactic-themed brushes',
+                    'Interactive space environment',
+                    'Creative expression platform',
+                    'Shareable artwork'
                 ],
-                tech: 'Created using vanilla JavaScript and HTML5 Canvas for rendering. Physics engine built from scratch, particle system for visual effects, and localStorage for saving high scores.',
-                tags: ['JavaScript', 'Canvas', 'Game Dev', 'Physics'],
-                links: [
-                    { text: 'Play Now', url: '#' },
-                    { text: 'Source', url: '#' }
-                ]
+                tech: 'p5.js',
+                tags: ['Interactive', 'Creative Tool', 'Digital Art'],
+                projectPage: '#',
+                links: []
             },
-            'Chat Bubble': {
-                icon: '💬',
-                description: 'A real-time messaging platform with end-to-end encryption and custom emoji reactions. Connect with friends, create groups, and share moments securely.',
+            'Chick Ping Pong': {
+                icon: '🐣',
+                description: 'A fun and playful ping pong game with a unique twist featuring adorable chick characters.',
                 features: [
-                    'End-to-end encrypted messages',
-                    'Real-time typing indicators',
-                    'Custom emoji reactions and GIF support',
-                    'Voice and video calls',
-                    'File sharing up to 100MB'
+                    'Charming character design',
+                    'Smooth gameplay mechanics',
+                    'Progressive difficulty',
+                    'Playful visual style',
+                    'Engaging sound effects'
                 ],
-                tech: 'Backend built with Node.js and Express, Socket.io for real-time communication, MongoDB for data storage, and crypto libraries for end-to-end encryption.',
-                tags: ['Node.js', 'Socket.io', 'MongoDB', 'Express', 'Encryption'],
-                links: [
-                    { text: 'Demo', url: '#' },
-                    { text: 'GitHub', url: '#' }
-                ]
+                tech: 'Game mechanics built with focus on responsive controls and delightful player experience.',
+                tags: ['Game Design', 'Interactive', 'Character Design'],
+                projectPage: '#',
+                links: []
             },
-            'Butterfly E-commerce': {
-                icon: '🦋',
-                description: 'A complete redesign of an online store with focus on user experience and conversion. This project transformed a cluttered shopping experience into an elegant, conversion-optimized platform.',
+            'Celentia': {
+                icon: '🌟',
+                description: 'An immersive interactive experience with celestial themes, exploring the beauty of the cosmos through interactive media.',
                 features: [
-                    'Streamlined checkout process (3 clicks to purchase)',
-                    'Smart product recommendations',
-                    'Wishlist and comparison tools',
-                    'AR try-on for select products',
-                    'Multi-currency and language support'
+                    'Celestial-themed environments',
+                    'Interactive exploration',
+                    'Beautiful visual effects',
+                    'Ambient soundscapes',
+                    'Discovery-based gameplay'
                 ],
-                tech: 'Designed with a mobile-first approach in Figma. Complete design system with components, comprehensive branding guidelines, and user flow documentation.',
-                tags: ['E-commerce', 'Branding', 'UI Design', 'Mobile-First', 'UX Research'],
-                links: [
-                    { text: 'View Design', url: '#' },
-                    { text: 'Read More', url: '#' }
-                ]
+                tech: 'Interactive media project combining visual design with engaging user interactions.',
+                tags: ['Game Design', 'Interactive Media', 'Visual Design'],
+                projectPage: '#',
+                links: []
+            },
+            'Heed My Voice': {
+                icon: '🎤',
+                description: 'A voice-interactive game experience that responds to player vocal input, creating a unique gameplay dynamic.',
+                features: [
+                    'Voice recognition mechanics',
+                    'Innovative control scheme',
+                    'Responsive gameplay',
+                    'Audio-based puzzles',
+                    'Unique player interaction'
+                ],
+                tech: 'Developed with voice recognition technology and audio processing for interactive gameplay.',
+                tags: ['Interactive', 'Voice Control', 'Innovative Mechanics'],
+                projectPage: '#',
+                links: []
+            },
+            'Combat Character Illustration': {
+                icon: '⚔️',
+                description: 'Work in Progress - Dynamic combat character design with detailed armor and weapon elements, showcasing skills in character illustration.',
+                features: [
+                    'Detailed character anatomy',
+                    'Complex armor design',
+                    'Dynamic pose and composition',
+                    'Rich color palette with cool tones',
+                    'Professional illustration technique'
+                ],
+                tech: 'Digital illustration created with professional illustration software, focusing on character design fundamentals.',
+                tags: ['Character Design', 'Digital Art', 'Illustration'],
+                projectPage: '#',
+                links: []
+            },
+            'Enemy Blob Nifia': {
+                icon: '👾',
+                description: 'Enemy character design featuring unique blob-based creature concepts for game environments.',
+                features: [
+                    'Creative creature design',
+                    'Game-ready character art',
+                    'Unique visual identity',
+                    'Expressive character personality',
+                    'Multiple design variations'
+                ],
+                tech: 'Digital illustration with focus on character design for game applications.',
+                tags: ['Character Design', 'Game Art', 'Digital Illustration'],
+                projectPage: '#',
+                links: []
+            },
+            'Album Cover Designs': {
+                icon: '🎵',
+                description: 'Song Book for 最後の花弁 (The Meaning of Love) by EGOIST (ft M2U) - Exploration in typography, hierarchy, and composition for music album artwork.',
+                features: [
+                    'Typography-focused design',
+                    'Visual hierarchy mastery',
+                    'Compositional balance',
+                    'Music-inspired aesthetics',
+                    'Professional layout design'
+                ],
+                tech: 'Graphic design project exploring principles of typography, hierarchy, and visual composition for album artwork.',
+                tags: ['Graphic Design', 'Typography', 'Layout Design'],
+                projectPage: '#',
+                links: []
+            },
+            'Recycled Memories': {
+                icon: '🎨',
+                description: 'Traditional art piece exploring themes of memory and nostalgia using watercolor and mixed media techniques.',
+                features: [
+                    'Watercolor technique mastery',
+                    'Mixed media integration',
+                    'Conceptual depth',
+                    'Emotional storytelling',
+                    'Traditional art skills'
+                ],
+                tech: 'Created using traditional watercolor techniques combined with mixed media elements, showcasing proficiency in traditional art methods.',
+                tags: ['Traditional Art', 'Watercolor', 'Mixed Media'],
+                projectPage: '#',
+                links: []
+            },
+            'Horse Feeding Painting': {
+                icon: '🐴',
+                description: 'Traditional painting capturing a serene moment with detailed brushwork and careful attention to light and composition.',
+                features: [
+                    'Realistic painting technique',
+                    'Detailed brushwork',
+                    'Careful composition',
+                    'Light and shadow mastery',
+                    'Traditional painting skills'
+                ],
+                tech: 'Traditional painting using acrylic or oil paint, demonstrating classical painting techniques.',
+                tags: ['Traditional Art', 'Acrylic Paint', 'Realism'],
+                projectPage: '#',
+                links: []
+            },
+            'Head Sculpture Still Life': {
+                icon: '🗿',
+                description: 'Classical still life study featuring a sculptural form, demonstrating mastery of light, shadow, and three-dimensional form.',
+                features: [
+                    'Classical still life technique',
+                    'Light and shadow rendering',
+                    '3D form understanding',
+                    'Charcoal/graphite mastery',
+                    'Academic drawing skills'
+                ],
+                tech: 'Traditional drawing using charcoal or graphite, showcasing classical art training and observational skills.',
+                tags: ['Traditional Art', 'Charcoal', 'Still Life'],
+                projectPage: '#',
+                links: []
             }
         };
 
@@ -859,9 +1020,19 @@
                 featuresContainer.appendChild(li);
             });
 
-            // Set buttons
+            // Set buttons - always add the "View Full Project Details" button
             const buttonsContainer = document.getElementById('modalButtons');
             buttonsContainer.innerHTML = '';
+            
+            // Always add "View Full Project Details" button
+            const fullProjectBtn = document.createElement('a');
+            fullProjectBtn.className = 'modal-button';
+            fullProjectBtn.textContent = '✨ View Full Project Details';
+            fullProjectBtn.href = data.projectPage || '#';
+            fullProjectBtn.style.background = 'linear-gradient(135deg, #ff91c7, #82c5ff)';
+            buttonsContainer.appendChild(fullProjectBtn);
+            
+            // Add any additional custom links
             data.links.forEach(link => {
                 const btn = document.createElement('a');
                 btn.className = 'modal-button';
