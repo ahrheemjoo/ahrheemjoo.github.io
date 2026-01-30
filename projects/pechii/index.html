@@ -68,6 +68,7 @@
       box-shadow: 0 10px 30px rgba(255,145,199,0.5);
       animation: floatOrb 3s ease-in-out infinite;
       z-index: 20;
+      transition: transform 0.3s ease;
     }
 
     @keyframes floatOrb {
@@ -75,7 +76,7 @@
       50%{transform:translateY(-10px)}
     }
 
-    .back-orb:hover { transform: scale(1.1); }
+    .back-orb:hover { transform: scale(1.1) translateY(-5px); }
 
     /* Breadcrumb */
     .breadcrumb {
@@ -88,6 +89,11 @@
     .breadcrumb a {
       color: #82c5ff;
       text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .breadcrumb a:hover {
+      color: #ff91c7;
     }
 
     /* Layout */
@@ -102,14 +108,32 @@
     header {
       text-align: center;
       margin-bottom: 60px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
     h1 {
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       background: linear-gradient(135deg, #82c5ff, #ff91c7, #82c5ff);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
       animation: gradientShift 3s ease infinite;
     }
 
@@ -118,14 +142,19 @@
       50%{background-position:100% 50%}
     }
 
-    .subtitle { color:#8e7aa5; font-size:1.2rem; margin-top:10px }
+    .subtitle { 
+      color: #8e7aa5; 
+      font-size: 1.3rem; 
+      margin-top: 15px;
+      line-height: 1.6;
+    }
 
     /* Glass cards */
     .card {
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(15px);
       border-radius: 25px;
-      padding: 40px;
+      padding: 50px;
       margin-bottom: 40px;
       box-shadow: 0 10px 40px rgba(130,197,255,0.3);
       opacity: 0;
@@ -138,67 +167,246 @@
       transform: translateY(0) scale(1);
     }
 
-    .card h2 { color:#ff91c7; font-size:1.8rem; margin-bottom:20px }
-    .card p { color:#6b5b7a; line-height:1.8; font-size:1.05rem }
+    .card h2 { 
+      color: #ff91c7; 
+      font-size: 2rem; 
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card h3 {
+      color: #82c5ff;
+      font-size: 1.5rem;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .card p { 
+      color: #6b5b7a; 
+      line-height: 1.8; 
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    .card ul, .card ol {
+      color: #6b5b7a;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-left: 30px;
+      margin-bottom: 20px;
+    }
+
+    .card li {
+      margin-bottom: 10px;
+    }
+
+    /* Two column layout */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 25px;
+    }
+
+    .column {
+      background: rgba(255, 255, 255, 0.4);
+      padding: 25px;
+      border-radius: 20px;
+    }
 
     /* Wireframe images */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 20px;
-      margin-top: 25px;
+      gap: 25px;
+      margin-top: 30px;
     }
 
     .process-img {
       background: rgba(255,255,255,0.7);
       border-radius: 20px;
-      padding: 20px;
+      padding: 30px;
       text-align: center;
       color: #8e7aa5;
-      font-size: 0.9rem;
+      font-size: 1rem;
       box-shadow: 0 6px 25px rgba(130,197,255,0.25);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .process-img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 35px rgba(255,145,199,0.35);
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(255, 145, 199, 0.2), rgba(130, 197, 255, 0.2));
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 145, 199, 0.3);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff91c7, #82c5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #6b5b7a;
+      font-size: 1rem;
+    }
+
+    /* Callout/Quote */
+    .callout {
+      background: linear-gradient(135deg, rgba(255, 145, 199, 0.2), rgba(130, 197, 255, 0.2));
+      border-left: 5px solid #ff91c7;
+      padding: 25px 30px;
+      border-radius: 15px;
+      margin: 25px 0;
+      font-style: italic;
+      color: #6b5b7a;
+      font-size: 1.15rem;
+      line-height: 1.7;
     }
 
     /* Tags */
-    .tags { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px }
+    .tags { 
+      display: flex; 
+      gap: 12px; 
+      flex-wrap: wrap; 
+      margin-top: 25px;
+    }
+
     .tag {
       background: rgba(130,197,255,0.3);
       color: #5a8fc4;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: 20px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       transition: transform 0.3s ease;
+      box-shadow: 0 3px 10px rgba(130,197,255,0.2);
     }
 
-    .tag:hover { transform: translateY(-3px); }
+    .tag:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 20px rgba(130,197,255,0.35);
+    }
 
     /* Tabs */
-    .tabs { display:flex; gap:10px; margin-bottom:20px }
+    .tabs { 
+      display: flex; 
+      gap: 12px; 
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
     .tab {
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 20px;
       background: rgba(255,255,255,0.5);
       cursor: pointer;
       color: #8e7aa5;
       transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    .tab.active { background: linear-gradient(135deg,#82c5ff,#ff91c7); color:white }
+    .tab:hover {
+      background: rgba(255,255,255,0.7);
+      transform: translateY(-2px);
+    }
 
-    .embed { display:none }
-    .embed.active { display:block }
+    .tab.active { 
+      background: linear-gradient(135deg,#82c5ff,#ff91c7); 
+      color: white;
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .embed { 
+      display: none;
+      margin-top: 20px;
+    }
+
+    .embed.active { display: block; }
 
     iframe {
-      max-width:100%;
-      border-radius:20px;
+      width: 100%;
+      border-radius: 20px;
       box-shadow: 0 10px 40px rgba(255,145,199,0.35);
-      background:white;
+      background: white;
+      border: none;
+    }
+
+    /* Navigation */
+    .case-study-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    .nav-button {
+      flex: 1;
+      background: linear-gradient(135deg, #82c5ff, #ff91c7);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 25px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(130, 197, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255, 145, 199, 0.5);
     }
 
     @media(max-width:768px){
-      h1{font-size:2.4rem}
-      .card{padding:25px}
-      iframe{height:300px}
+      h1 { font-size: 2.5rem; }
+      .project-icon { font-size: 3.5rem; }
+      .subtitle { font-size: 1.1rem; }
+      .card { padding: 30px 25px; }
+      .card h2 { font-size: 1.7rem; }
+      .two-column { grid-template-columns: 1fr; }
+      iframe { height: 300px; }
+      .back-orb { 
+        width: 55px; 
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .case-study-nav {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -206,29 +414,98 @@
 
 <div class="stars" id="stars"></div>
 <div class="floating-shapes" id="shapes"></div>
-<a href="../index.html" class="back-orb">↩</a>
+<a href="../projects.html" class="back-orb">↩</a>
 
 <div class="container">
   <div class="breadcrumb">
-    <a href="../index.html">Projects</a> ✧ Pechii
+    <a href="../projects.html">Projects</a> ✧ Pechii
   </div>
 
   <header>
+    <div class="project-icon">🌸</div>
     <h1>Pechii</h1>
     <p class="subtitle">A magical wardrobe companion for the Lolita fashion community</p>
   </header>
 
+  <!-- Overview -->
   <section class="card">
     <h2>Project Overview</h2>
-    <p>Pechii is a mobile app concept designed to help members of the Lolita fashion community catalog, trade, and coordinate their wardrobe pieces.</p>
+    <p>Pechii is a mobile app concept designed to help members of the Lolita fashion community catalog, trade, and coordinate their wardrobe pieces. This project aims to solve the challenges of organizing extensive fashion collections, being able to try different pieces within budget, and staying connected with the Lolita community.</p>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Weeks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Solo</div>
+        <div class="stat-label">Designer</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">iOS</div>
+        <div class="stat-label">Platform</div>
+      </div>
+    </div>
+
     <div class="tags">
-      <span class="tag">UI/UX</span><span class="tag">Figma</span><span class="tag">Mobile App</span>
+      <span class="tag">UI/UX Design</span>
+      <span class="tag">Figma</span>
+      <span class="tag">Mobile App</span>
+      <span class="tag">Community Platform</span>
     </div>
   </section>
 
+  <!-- Problem Statement -->
+  <section class="card">
+    <h2>Problem Statement</h2>
+    <p>Lolita fashion enthusiasts often struggle with:</p>
+    <ul>
+      <li>Organizing and cataloging their extensive wardrobe collections</li>
+      <li>Finding trusted community members to trade or sell pieces</li>
+      <li>Keeping track of coordinate combinations and outfit ideas</li>
+      <li>Accessing a centralized platform dedicated to their niche fashion community</li>
+      <li>Being able to afford trying multiple pieces and styles at once</li>
+    </ul>
+
+    <div class="callout">
+      "How might we create a digital space that helps Lolita fashion enthusiasts organize their wardrobes and try different styles while connecting with their community?" 
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section class="card">
+    <h2>Research & Discovery</h2>
+    
+    <h3>User Research</h3>
+    <p>I researched online Lolita fashion community threads and Lolita fashion cost analysis papers to understand the community's pain points and needs:</p>
+    
+    <div class="two-column">
+      <div class="column">
+        <h3>Key Findings</h3>
+        <ul>
+          <li>Use spreadsheets to track items</li>
+          <li>Feel overwhelmed by wardrobe size</li>
+          <li>Want better trading options, apart from weekly/monthly swap meets</li>
+          <li>100% active in online communities</li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>User Needs</h3>
+        <ul>
+          <li>Visual wardrobe organization</li>
+          <li>Coordinate planning tools</li>
+          <li>Safe trading platform</li>
+          <li>Community features</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Process -->
   <section class="card">
     <h2>Design Process</h2>
-    <p>Wireframes focused on clarity and inventory structure. Iterations refined tagging, filtering, and emotional tone before arriving at the final interface.</p>
+    <p>Wireframes focused on inventory structure. Iterations refined tagging, filtering, and layout before arriving at the final interface.</p>
+    
     <div class="process-grid">
       <div class="process-img">Low-fidelity wireframes</div>
       <div class="process-img">Mid-fidelity iterations</div>
@@ -236,11 +513,14 @@
     </div>
   </section>
 
+  <!-- Design & Prototype -->
   <section class="card">
     <h2>Design & Prototype</h2>
+    <p>Explore the complete design system and interactive prototype below:</p>
+    
     <div class="tabs">
-      <div class="tab active" data-tab="design">Design</div>
-      <div class="tab" data-tab="proto">Prototype</div>
+      <div class="tab active" data-tab="design">Design Files</div>
+      <div class="tab" data-tab="proto">Interactive Prototype</div>
     </div>
 
     <div class="embed active" id="design">
@@ -252,36 +532,112 @@
     </div>
   </section>
 
+  <!-- Key Features -->
   <section class="card">
-    <h2>Reflection</h2>
-    <p>This project strengthened my skills in emotional UI design, component systems, and designing for niche communities with strong identities.</p>
+    <h2>Key Features</h2>
+    
+    <h3>1. Digital Wardrobe Archive</h3>
+    <p>Users can photograph and catalog every piece in their collection with detailed tags, purchase information, and condition notes.</p>
+
+    <h3>2. Coordinate Builder</h3>
+    <p>A drag-and-drop interface allows users to create and save outfit combinations from their archived pieces.</p>
+
+    <h3>3. Community Marketplace</h3>
+    <p>Safe, moderated trading platform with user verification and rating system.</p>
+
+    <h3>4. Swipe or List View for Listings</h3>
+    <p>Users can choose between swiping left/right or vertical-scrolling to view and add listings.</p>
+    
   </section>
+
+  <!-- Challenges & Solutions -->
+  <section class="card">
+    <h2>Challenges & Solutions</h2>
+    
+    <div class="two-column">
+      <div class="column">
+        <h3>Challenge 1</h3>
+        <p><strong>Photo Quality Consistency</strong></p>
+        <p>Users had varying photo quality for their items.</p>
+        <p><strong>Solution:</strong> Implemented in-app photo guides and templates to ensure consistent, quality images.</p>
+      </div>
+      <div class="column">
+        <h3>Challenge 2</h3>
+        <p><strong>Trust & Safety</strong></p>
+        <p>Users worried about scams in trading.</p>
+        <p><strong>Solution:</strong> Created verification system, ratings, and secure payment integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reflection -->
+  <section class="card">
+    <h2>Reflection & Learnings</h2>
+    <p>This project strengthened my skills in emotional UI design, component systems, and designing for niche communities with strong identities. Key takeaways include:</p>
+    <ul>
+      <li><strong>Community-First Design:</strong> Understanding the unique culture and values of the Lolita fashion community was crucial to creating relevant features.</li>
+      <li><strong>Visual Consistency:</strong> Balancing aesthetic beauty with functional clarity required careful iteration.</li>
+      <li><strong>Trust Building:</strong> For marketplace features, establishing trust through design elements (verification badges, ratings) was essential.</li>
+      <li><strong>Scalability:</strong> Planning for users with varying wardrobe sizes required flexible design solutions.</li>
+    </ul>
+  </section>
+
+  <!-- Navigation -->
+  <div class="case-study-nav">
+    <a href="../projects.html" class="nav-button">
+      ← Back to Projects
+    </a>
+    <a href="#" class="nav-button">
+      Next Project →
+    </a>
+  </div>
+
 </div>
 
 <script>
-  // stars
+  // Create twinkling stars
   const stars=document.getElementById('stars');
-  for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';stars.appendChild(s)}
+  for(let i=0;i<60;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.animationDelay=Math.random()*3+'s';
+    s.style.animationDuration=(Math.random()*2+2)+'s';
+    stars.appendChild(s);
+  }
 
-  // shapes
-  const shapes=document.getElementById('shapes');['○','△','◇','☆'].forEach((sh,i)=>{const el=document.createElement('div');el.className='shape';el.textContent=sh;el.style.left=Math.random()*100+'%';el.style.top=Math.random()*100+'%';el.style.animationDelay=i*2+'s';shapes.appendChild(el)})
+  // Create floating shapes
+  const shapes=document.getElementById('shapes');
+  ['○','△','◇','☆'].forEach((sh,i)=>{
+    const el=document.createElement('div');
+    el.className='shape';
+    el.textContent=sh;
+    el.style.left=Math.random()*100+'%';
+    el.style.top=Math.random()*100+'%';
+    el.style.animationDelay=i*2+'s';
+    el.style.animationDuration=(Math.random()*10+15)+'s';
+    shapes.appendChild(el);
+  });
 
-  // scroll animation
+  // Scroll animation for cards
   const cards=document.querySelectorAll('.card');
   const observer=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('visible');
+    });
   },{threshold:0.2});
   cards.forEach(c=>observer.observe(c));
 
-  // tabs
+  // Tab switching
   document.querySelectorAll('.tab').forEach(tab=>{
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
       document.querySelectorAll('.embed').forEach(e=>e.classList.remove('active'));
       tab.classList.add('active');
       document.getElementById(tab.dataset.tab).classList.add('active');
-    })
-  })
+    });
+  });
 </script>
 
 </body>
