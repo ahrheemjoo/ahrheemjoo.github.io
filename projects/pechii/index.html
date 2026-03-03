@@ -304,7 +304,7 @@
       box-shadow: 0 10px 40px rgba(255,145,199,0.35);
       background: rgba(255,255,255,0.7);
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
       height: 0;
     }
 
@@ -485,6 +485,18 @@
       box-shadow: 0 8px 30px rgba(255, 145, 199, 0.5);
     }
 
+    /* Swipe feature grid — 4 items, 2x2 on desktop */
+    .swipe-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .swipe-grid .process-img {
+      min-height: 300px;
+    }
+
     @media(max-width:768px){
       h1 { font-size: 2.5rem; }
       .project-icon { font-size: 3.5rem; }
@@ -499,9 +511,8 @@
         bottom: 20px;
         right: 20px;
       }
-      .case-study-nav {
-        flex-direction: column;
-      }
+      .case-study-nav { flex-direction: column; }
+      .swipe-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -528,11 +539,9 @@
     <p>Lolita fashion is a Japanese street fashion that originated in the 1970s, and it is heavily inspired by Victorian and Rococo aesthetics. Pechii is a mobile app concept designed to help members of the Lolita fashion community catalog, trade, and coordinate their wardrobe pieces. The name "Pechii" is thus derived from the Japanese pronunciation of "petticoat." 
       <br><br>This project aims to solve the challenges of organizing extensive fashion collections, being able to try different pieces within budget, and staying connected with the Lolita community.</p>
     
-    <!-- 📸 IMAGE SLOT 1: Hero/Cover Image -->
-    <div class="image-container">
-      <span>Add cover image here</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/cover.jpg" alt="Pechii App Hero Image"> -->
+    <!-- Hero / Cover Image -->
+    <div class="image-container has-image">
+      <img src="../../images/projects/pechii/pechii_myClosetHome.png" alt="Pechii App Home Screen">
     </div>
     
     <div class="stats">
@@ -603,11 +612,9 @@
       </div>
     </div>
 
-    <!-- 📸 IMAGE SLOT 2: Research Insights -->
-    <div class="image-container" style="margin-top: 30px;">
-      <span>📊 Add research insights / user personas here</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/research.jpg" alt="User Research Insights"> -->
+    <!-- Research Insights — Style Guide -->
+    <div class="image-container has-image" style="margin-top: 30px;">
+      <img src="../../images/projects/pechii/pechii_styleGuide.png" alt="Pechii Style Guide">
     </div>
   </section>
 
@@ -616,22 +623,15 @@
     <h2>Design Process</h2>
     <p>Wireframes focused on inventory structure. Iterations refined tagging, filtering, and layout before arriving at the final interface.</p>
     
-    <!-- 📸 IMAGE SLOTS 3-5: Wireframes Grid -->
     <div class="process-grid">
-      <div class="process-img">
-        <span>Low-fidelity wireframes</span>
-        <!-- AFTER UPLOAD: Uncomment and update path below -->
-        <!-- <img src="../images/pechii/wireframe-low.jpg" alt="Low-fidelity wireframes"> -->
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_profile.png" alt="Profile Screen">
       </div>
-      <div class="process-img">
-        <span>Mid-fidelity iterations</span>
-        <!-- AFTER UPLOAD: Uncomment and update path below -->
-        <!-- <img src="../images/pechii/wireframe-mid.jpg" alt="Mid-fidelity iterations"> -->
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_achievementsPage.png" alt="Achievements Page">
       </div>
-      <div class="process-img">
-        <span>Final UI polish</span>
-        <!-- AFTER UPLOAD: Uncomment and update path below -->
-        <!-- <img src="../images/pechii/wireframe-final.jpg" alt="Final UI polish"> -->
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_dressSelection.png" alt="Dress Selection Screen">
       </div>
     </div>
   </section>
@@ -662,63 +662,50 @@
     <h3>1. Digital Wardrobe Archive</h3>
     <p>Users can photograph and catalog every piece in their collection with detailed tags, purchase information, and condition notes.</p>
 
-    <!-- 📸 IMAGE SLOT 6: Feature 1 -->
-    <div class="image-container">
-      <span>Add wardrobe archive screenshots</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/feature-wardrobe.jpg" alt="Digital Wardrobe Archive"> -->
+    <div class="image-container has-image">
+      <img src="../../images/projects/pechii/pechii_myClosetHome.png" alt="Digital Wardrobe Archive">
     </div>
 
     <h3>2. Coordinate Builder</h3>
     <p>A drag-and-drop interface allows users to create and save outfit combinations from their archived pieces.</p>
 
-    <!-- 📸 IMAGE SLOT 7: Feature 2 -->
-    <div class="image-container">
-      <span>Add coordinate builder screenshots here</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/feature-coordinate.jpg" alt="Coordinate Builder"> -->
+    <div class="image-container has-image">
+      <img src="../../images/projects/pechii/pechii_basketItemCloseup-Page.png" alt="Item Closeup / Coordinate Builder">
     </div>
 
     <h3>3. Community Marketplace</h3>
     <p>Safe, moderated trading platform with user verification and rating system.</p>
 
-    <!-- 📸 IMAGE SLOT 8: Feature 3 -->
-    <div class="image-container">
-      <span>Add marketplace screenshots here</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/feature-marketplace.jpg" alt="Community Marketplace"> -->
+    <div class="image-container has-image">
+      <img src="../../images/projects/pechii/pechii_myster-TradePopup.png" alt="Mystery Trade Popup">
     </div>
 
     <h3>4. Swipe or List View for Listings</h3>
     <p>Users can choose between swiping left/right or vertical-scrolling to view and add listings.</p>
-    
-    <!-- 📸 IMAGE SLOT 9: Feature 4 -->
-    <div class="image-container">
-      <span>Add swipe/list view screenshots here</span>
-      <!-- AFTER UPLOAD: Uncomment and update path below -->
-      <!-- <img src="../images/pechii/feature-swipe.jpg" alt="Swipe and List Views"> -->
+
+    <div class="swipe-grid">
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_swipeStyle-TradeScreenFrame3-Dragging.png" alt="Swipe Dragging">
+      </div>
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_swipeStyle-TradeScreenNO.png" alt="Swipe No">
+      </div>
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_swipeStyle-TradeScreenYES.png" alt="Swipe Yes">
+      </div>
+      <div class="process-img has-image">
+        <img src="../../images/projects/pechii/pechii_ListView.png" alt="List View">
+      </div>
     </div>
 
     <h3>App Introduction Video</h3>
     <p>Watch a walkthrough of the Pechii app prototype:</p>
     
-    <!-- 🎬 VIDEO SLOT: Walkthrough -->
     <div class="video-container">
       <iframe src="https://www.youtube.com/embed/F-dndZgo5XE" 
               allowfullscreen
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
       </iframe>
-      
-      </div>
-      
-      <!-- OPTION 1 - YOUTUBE: Uncomment and add your video ID -->
-      <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
-      
-      <!-- OPTION 2 - UPLOADED VIDEO: Uncomment and update path -->
-      <!-- <video controls>
-        <source src="../videos/pechii-walkthrough.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video> -->
     </div>
     
   </section>
