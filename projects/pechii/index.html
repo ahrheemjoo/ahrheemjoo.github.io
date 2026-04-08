@@ -123,15 +123,35 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .project-icon {
-      font-size: 5rem;
-      margin-bottom: 20px;
-      animation: bounce 2s ease-in-out infinite;
+    /* ── Logo placeholder ── */
+    .logo-placeholder {
+      width: 110px;
+      height: 110px;
+      border-radius: 28px;
+      border: 2.5px dashed rgba(130,197,255,0.7);
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 0 auto 24px;
+      color: #a0b8d0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 6px 20px rgba(130,197,255,0.2);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+    .logo-placeholder:hover {
+      border-color: rgba(255,145,199,0.7);
+      box-shadow: 0 8px 28px rgba(255,145,199,0.25);
+    }
+
+    .logo-placeholder svg {
+      opacity: 0.5;
     }
 
     h1 {
@@ -223,6 +243,28 @@
       border-radius: 20px;
     }
 
+    /* ── Cover image — constrained, not stretched ── */
+    .cover-image-container {
+      width: 100%;
+      margin: 30px 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(130,197,255,0.3);
+      max-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .cover-image-container img {
+      width: 100%;
+      height: 420px;
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+    }
+
     /* Wireframe images */
     .process-grid {
       display: grid;
@@ -239,7 +281,7 @@
       color: #8e7aa5;
       font-size: 1rem;
       box-shadow: 0 6px 25px rgba(130,197,255,0.25);
-      min-height: 200px;
+      min-height: 260px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -248,14 +290,16 @@
       position: relative;
     }
 
+    /* Images fill the box but aren't cropped — use contain */
     .process-img img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       position: absolute;
       top: 0;
       left: 0;
       border-radius: 20px;
+      padding: 12px;
     }
 
     .process-img.has-image {
@@ -267,7 +311,7 @@
       box-shadow: 0 10px 35px rgba(255,145,199,0.35);
     }
 
-    /* Image container */
+    /* General image container — contain, not cover */
     .image-container {
       width: 100%;
       margin: 30px 0;
@@ -275,7 +319,6 @@
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(130,197,255,0.3);
       background: rgba(255,255,255,0.7);
-      min-height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -287,13 +330,36 @@
     .image-container img {
       width: 100%;
       height: auto;
+      max-height: 520px;
+      object-fit: contain;
       display: block;
+      padding: 16px;
     }
 
     .image-container.has-image {
-      min-height: auto;
-      background: transparent;
+      background: rgba(255,255,255,0.55);
     }
+
+    /* Placeholder image boxes */
+    .img-placeholder {
+      width: 100%;
+      margin: 30px 0;
+      border-radius: 20px;
+      border: 2.5px dashed rgba(130,197,255,0.6);
+      background: rgba(255,255,255,0.45);
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #a0b8d0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .img-placeholder svg { opacity: 0.45; }
 
     /* Video container */
     .video-container {
@@ -316,27 +382,6 @@
       width: 100%;
       height: 100%;
       border: none;
-    }
-
-    .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #8e7aa5;
-      font-size: 1.1rem;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .video-placeholder::before {
-      content: "▶";
-      font-size: 3rem;
-      opacity: 0.5;
     }
 
     /* Stats */
@@ -499,7 +544,6 @@
 
     @media(max-width:768px){
       h1 { font-size: 2.5rem; }
-      .project-icon { font-size: 3.5rem; }
       .subtitle { font-size: 1.1rem; }
       .card { padding: 30px 25px; }
       .card h2 { font-size: 1.7rem; }
@@ -528,7 +572,16 @@
   </div>
   
   <header>
-    <div class="project-icon"></div>
+    <!-- Logo placeholder — swap this out with your actual logo image -->
+    <div class="logo-placeholder">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="4"/>
+        <circle cx="12" cy="10" r="3"/>
+        <path d="M6 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+      </svg>
+      LOGO
+    </div>
+
     <h1>Pechii</h1>
     <p class="subtitle">A wardrobe archive and trading platform for the Lolita fashion community</p>
   </header>
@@ -536,11 +589,11 @@
   <!-- Overview -->
   <section class="card">
     <h2>Project Overview</h2>
-    <p>Lolita fashion is a Japanese street fashion that originated in the 1970s, and it is heavily inspired by Victorian and Rococo aesthetics. Pechii is a mobile app concept designed to help members of the Lolita fashion community catalog, trade, and coordinate their wardrobe pieces. The name "Pechii" is thus derived from the Japanese pronunciation of "petticoat." 
-      <br><br>This project aims to solve the challenges of organizing extensive fashion collections, being able to try different pieces within budget, and staying connected with the Lolita community.</p>
+    <p>Lolita fashion is a Japanese street style rooted in Victorian and Rococo aesthetics, with a passionate global community built around collecting and coordinating elaborate pieces. The name "Pechii" comes from the Japanese pronunciation of "petticoat" — a staple of the aesthetic.</p>
+    <p>I designed Pechii as a mobile app concept for Android that gives Lolita enthusiasts a dedicated space to catalog their wardrobe, plan outfits, and trade pieces with fellow community members. Unlike generic resale apps, Pechii was built specifically around how this community thinks about fashion — not just buying and selling, but curating and coordinating.</p>
     
-    <!-- Hero / Cover Image -->
-    <div class="image-container has-image">
+    <!-- Cover Image -->
+    <div class="cover-image-container">
       <img src="../../images/projects/pechii/pechii_myClosetHome.png" alt="Pechii App Home Screen">
     </div>
     
@@ -570,17 +623,11 @@
   <!-- Problem Statement -->
   <section class="card">
     <h2>Problem Statement</h2>
-    <p>Lolita fashion enthusiasts often struggle with:</p>
-    <ul>
-      <li>Organizing and cataloging their extensive wardrobe collections</li>
-      <li>Finding trusted community members to trade or sell pieces</li>
-      <li>Keeping track of coordinate combinations and outfit ideas</li>
-      <li>Accessing a centralized platform dedicated to their niche fashion community</li>
-      <li>Being able to afford trying multiple pieces and styles at once</li>
-    </ul>
+    <p>Lolita fashion is expensive and deeply personal — pieces are often hand-selected over years, and no two wardrobes look alike. But despite how seriously collectors take their archives, most people were still managing them with spreadsheets, private social media posts, or just memory.</p>
+    <p>On the trading side, the community mostly relied on weekly swap meets and scattered Facebook groups. There was no dedicated, trustworthy platform — just informal arrangements with strangers online.</p>
 
     <div class="callout">
-      "How might we create a digital space that helps Lolita fashion enthusiasts organize their wardrobes and try different styles while connecting with their community?" 
+      "How might I create a digital space that helps Lolita fashion enthusiasts organize their wardrobes, try different styles, and connect with their community without having to stitch together five different tools to do it?"
     </div>
   </section>
 
@@ -589,30 +636,30 @@
     <h2>Research & Discovery</h2>
     
     <h3>User Research</h3>
-    <p>I researched online Lolita fashion community threads and Lolita fashion cost analysis papers to understand the community's pain points and needs:</p>
+    <p>I explored online Lolita community forums, Reddit threads, and community cost analysis papers to understand how enthusiasts currently manage their wardrobes and what frustrated them most. A few patterns kept coming up:</p>
     
     <div class="two-column">
       <div class="column">
-        <h3>Key Findings</h3>
+        <h3>What people were doing</h3>
         <ul>
-          <li>Use spreadsheets to track items</li>
-          <li>Feel overwhelmed by wardrobe size</li>
-          <li>Want better trading options, apart from weekly/monthly swap meets</li>
-          <li>100% active in online communities</li>
+          <li>Tracking items in Google Sheets or Notion</li>
+          <li>Posting "wardrobe dumps" on social media just to remember what they owned</li>
+          <li>Using Facebook groups and Discord servers for trades</li>
+          <li>Manually planning coordinates by saving screenshots</li>
         </ul>
       </div>
       <div class="column">
-        <h3>User Needs</h3>
+        <h3>What they actually needed</h3>
         <ul>
-          <li>Visual wardrobe organization</li>
-          <li>Coordinate planning tools</li>
-          <li>Safe trading platform</li>
-          <li>Community features</li>
+          <li>A visual, browsable wardrobe they could actually use</li>
+          <li>Tools to plan and save coordinate combinations</li>
+          <li>A trading space built around community trust</li>
+          <li>Something that understands the culture.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Research Insights — Style Guide -->
+    <!-- Style Guide Image -->
     <div class="image-container has-image" style="margin-top: 30px;">
       <img src="../../images/projects/pechii/pechii_styleGuide.png" alt="Pechii Style Guide">
     </div>
@@ -621,7 +668,7 @@
   <!-- Design Process -->
   <section class="card">
     <h2>Design Process</h2>
-    <p>Wireframes focused on inventory structure. Iterations refined tagging, filtering, and layout before arriving at the final interface.</p>
+    <p>Early wireframes focused on the information architecture, i.e. how to make a large wardrobe feel browsable without becoming overwhelming. I iterated a lot on tagging and filtering logic before settling on the final layout, and explored several different approaches to the trading flow before landing on the swipe-based and card-based format.</p>
     
     <div class="process-grid">
       <div class="process-img has-image">
@@ -639,7 +686,7 @@
   <!-- Design & Prototype -->
   <section class="card">
     <h2>Design & Prototype</h2>
-    <p>Explore the complete design system and interactive prototype below:</p>
+    <p>Explore the full design system and interactive prototype below:</p>
     
     <div class="tabs">
       <div class="tab active" data-tab="design">Design Files</div>
@@ -660,28 +707,28 @@
     <h2>Key Features</h2>
     
     <h3>1. Digital Wardrobe Archive</h3>
-    <p>Users can photograph and catalog every piece in their collection with detailed tags, purchase information, and condition notes.</p>
+    <p>The core of the app. Users can photograph, tag, and catalog every piece in their collection, including purchase details, condition notes, and style tags. The goal was to make the wardrobe feel as tangible digitally as it does in person.</p>
 
     <div class="image-container has-image">
       <img src="../../images/projects/pechii/pechii_myClosetHome.png" alt="Digital Wardrobe Archive">
     </div>
 
     <h3>2. Coordinate Builder</h3>
-    <p>A drag-and-drop interface allows users to create and save outfit combinations from their archived pieces.</p>
+    <p>Users can pull pieces from their archive and assemble outfits in a drag-and-drop interface. Saved coordinates can be revisited, edited, and shared. This allows coord/outfit planning to become something fun and visual and helps stray from the mental exercise many Lolitas struggle with when crafting their outfits.</p>
 
     <div class="image-container has-image">
       <img src="../../images/projects/pechii/pechii_basketItemCloseup-Page.png" alt="Item Closeup / Coordinate Builder">
     </div>
 
     <h3>3. Community Marketplace</h3>
-    <p>Safe, moderated trading platform with user verification and rating system.</p>
+    <p>Trading is a big part of the Lolita community, but trust is a real concern. I designed a moderated marketplace with user verification, ratings, and a mystery trade feature for those who enjoy the surprise element of community swaps.</p>
 
     <div class="image-container has-image">
       <img src="../../images/projects/pechii/pechii_myster-TradePopup.png" alt="Mystery Trade Popup">
     </div>
 
     <h3>4. Swipe or List View for Listings</h3>
-    <p>Users can choose between swiping left/right or vertical-scrolling to view and add listings.</p>
+    <p>I wanted the browsing experience to feel fun, not like doing chores. Users can swipe left and right through listings, or switch to a vertical list view if they prefer a more traditional browsing experience.</p>
 
     <div class="swipe-grid">
       <div class="process-img has-image">
@@ -699,7 +746,7 @@
     </div>
 
     <h3>App Introduction Video</h3>
-    <p>Watch a walkthrough of the Pechii app prototype:</p>
+    <p>A walkthrough of the Pechii prototype:</p>
     
     <div class="video-container">
       <iframe src="https://www.youtube.com/embed/F-dndZgo5XE" 
@@ -717,15 +764,15 @@
     <div class="two-column">
       <div class="column">
         <h3>Challenge 1</h3>
-        <p><strong>Photo Quality Consistency</strong></p>
-        <p>Users had varying photo quality for their items.</p>
-        <p><strong>Solution:</strong> Implemented in-app photo guides and templates to ensure consistent, quality images.</p>
+        <p><strong>Inconsistent photo quality</strong></p>
+        <p>Upon trying sample wardrobe photos, I realized that photos submitted by users may vary widely in quality, which makes the archive feel messy and hard to browse.</p>
+        <p><strong>Next Step:</strong> In-app photo guides and framing templates to nudge users toward consistent, clean shots without being restrictive.</p>
       </div>
       <div class="column">
         <h3>Challenge 2</h3>
-        <p><strong>Trust & Safety</strong></p>
-        <p>Users worried about scams in trading.</p>
-        <p><strong>Solution:</strong> Created verification system, ratings, and secure payment integration.</p>
+        <p><strong>Building trust in trades</strong></p>
+        <p>The community may have anxiety around scams, especially for high-value brand pieces.</p>
+        <p><strong>Next Step:</strong> Incorporate a tiered verification system, public trade ratings, and transaction history linked clearly and directly on user profiles so trust signals are visible before anyone commits to a trade.</p>
       </div>
     </div>
   </section>
@@ -733,12 +780,12 @@
   <!-- Reflection -->
   <section class="card">
     <h2>Reflection & Learnings</h2>
-    <p>This project strengthened my skills in emotional UI design, component systems, and designing for niche communities with strong identities. Key takeaways include:</p>
+    <p>This project was a good reminder that designing for a niche community means doing the cultural homework first. The Lolita fashion community has its own vocabulary, values, and etiquette, so getting that wrong (even subtly) would have made the app feel like it was designed by an outsider.</p>
     <ul>
-      <li><strong>Community-First Design:</strong> Understanding the unique culture and values of the Lolita fashion community was crucial to creating relevant features.</li>
-      <li><strong>Visual Consistency:</strong> Balancing aesthetic beauty with functional clarity required careful iteration.</li>
-      <li><strong>Trust Building:</strong> For marketplace features, establishing trust through design elements (verification badges, ratings) was essential.</li>
-      <li><strong>Scalability:</strong> Planning for users with varying wardrobe sizes required flexible design solutions.</li>
+      <li><strong>Context before features:</strong> Understanding why people collected, not just what they collected, shaped every design decision.</li>
+      <li><strong>Aesthetic coherence matters:</strong> For a fashion-focused app, the visual design had to feel intentional. Thus, the UI was modeled as a virtual Lolita-themed wardrobe, i.e. belonging in the same world as the pieces it was archiving.</li>
+      <li><strong>Trust is a design problem:</strong> For the marketplace to work, the next improvement I have to make is creating safety clearly visible, via user badges, ratings, and verified profiles.</li>
+      <li><strong>Flexibility at scale:</strong> Some users own 10 pieces, some own 300. The system needed to feel manageable at both ends without being designed for just one.</li>
     </ul>
   </section>
 
