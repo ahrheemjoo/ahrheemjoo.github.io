@@ -19,7 +19,6 @@
       overflow-x: hidden;
     }
 
-    /* Background aesthetics */
     .stars, .clouds {
       position: fixed;
       inset: 0;
@@ -55,7 +54,6 @@
       100% { transform: translateX(calc(100vw + 200px)); }
     }
 
-    /* Floating back orb */
     .back-orb {
       position: fixed;
       bottom: 30px;
@@ -83,7 +81,6 @@
 
     .back-orb:hover { transform: scale(1.1) translateY(-5px); }
 
-    /* Breadcrumb */
     .breadcrumb {
       text-align: center;
       margin-bottom: 25px;
@@ -99,7 +96,6 @@
 
     .breadcrumb a:hover { color: #ff91c7; }
 
-    /* Layout */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -152,7 +148,6 @@
       line-height: 1.6;
     }
 
-    /* Cloud card */
     .cloud-card {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(20px);
@@ -220,7 +215,6 @@
       margin-bottom: 10px;
     }
 
-    /* Info grid */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -247,7 +241,6 @@
       color: #6b5b7a;
     }
 
-    /* Tags */
     .tags { 
       display: flex; 
       gap: 12px; 
@@ -272,7 +265,6 @@
       box-shadow: 0 8px 25px rgba(130,197,255,0.4);
     }
 
-    /* Gallery grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -301,18 +293,16 @@
       display: block;
     }
 
-    .gallery-placeholder {
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .gallery-item .caption {
+      padding: 15px 20px;
+      font-size: 0.95rem;
       color: #8e7aa5;
-      font-size: 1.1rem;
-      padding: 40px;
       text-align: center;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Single large image */
     .featured-image {
       width: 100%;
       margin: 30px 0;
@@ -329,16 +319,38 @@
       display: block;
     }
 
-    .featured-placeholder {
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #8e7aa5;
-      font-size: 1.2rem;
+    /* Materials list styling */
+    .materials-list {
+      background: rgba(255,255,255,0.5);
+      border-radius: 30px;
+      padding: 25px 30px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Navigation */
+    .materials-list li {
+      margin-bottom: 8px;
+      color: #6b5b7a;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Challenge blocks */
+    .challenge-block {
+      background: rgba(255, 145, 199, 0.1);
+      border-left: 4px solid #ff91c7;
+      border-radius: 0 20px 20px 0;
+      padding: 20px 25px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .challenge-block p {
+      margin-bottom: 0 !important;
+    }
+
     .case-study-nav {
       display: flex;
       justify-content: space-between;
@@ -405,6 +417,10 @@
   <section class="cloud-card">
     <h2>About This Project</h2>
     <p>An Orca that swims to the music box tune as you turn the winding handle. The orca was designed and cut in Blender and Autodesk Fusion 360. The music box and drawer was designed in Adobe Illustrator, cut by a laser cutter, and hand-assembled through woodworking and sanding.</p>
+
+    <p>I am an avid music box collector, who has over 50 that were thrifted. As a child, I loved visiting aquariums, and at one point in time, I was a seven-year-old obsessed with dolphins, orcas, and whales. That is why I decided to pay homage to my childhood by combining two things I grew up loving: music boxes and the ocean.</p>
+
+    <p>The shelf, as well as the drawer, could also be used to store small items.</p>
 
     <div class="info-grid">
       <div class="info-item">
@@ -548,6 +564,38 @@
       <div class="gallery-item">
         <img src="../../images/projects/orca-automaton/orca-automaton_3D-model-underwater.jpg" alt="3D model underwater scene">
       </div>
+
+      <div class="gallery-item">
+        <img src="../../images/projects/orca-automaton/Orca-Music-Box-Automaton-Vessel-Solid-Background-Angle-3.png" alt="3D render – angled view on teal background">
+      </div>
+    </div>
+  </section>
+
+  <!-- Work In Progress -->
+  <section class="cloud-card">
+    <h2>Work in Progress</h2>
+    <p>A look behind the scenes — from the very first cardboard prototype all the way through 3D printing, painting, and final assembly in the workshop.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="../../images/projects/orca-automaton/orca_music_box_cardboard_prototype.jpg" alt="Cardboard prototype of the orca automaton">
+        <div class="caption">Cardboard prototype exploring the automaton mechanism</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="../../images/projects/orca-automaton/orca_music_box_3D_printing.jpg" alt="3D printing the orca segments on a Prusa i3 MK3">
+        <div class="caption">Printing orca segments on the Prusa i3 MK3</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="../../images/projects/orca-automaton/orca_music_box_painting_and_assembling.jpg" alt="Painting and assembling the 3D printed orca">
+        <div class="caption">Painting the printed orca and assembling segments</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="../../images/projects/orca-automaton/orca_music_box_final_stages_workshop_progress.jpg" alt="Final assembly stages in the UCLA workshop">
+        <div class="caption">Final assembly stages — laser-cut box, gears, and music box mechanism coming together</div>
+      </div>
     </div>
   </section>
 
@@ -565,11 +613,28 @@
 
       <li><strong>Mechanical Engineering:</strong> The automaton mechanism was designed to translate the rotational motion of the music box handle into the graceful up-and-down swimming motion of the orca. Particularly, a pair of gears the music box is connected to the main automaton crank handle via a pair of laser-cut wooden gears.</li>
 
-      <!-- <li><strong>Craftsmanship:</strong> The final, long process of sanding and finishing helped to smooth surfaces and refine edges, giving the piece a polished, professional appearance.</li> -->
-
       <li><strong>Integration:</strong> The music box mechanism and orca automaton were connected to the turning mechanism using gears, resulting in the combination of visual and auditory elements.</li>
 
+      <li><strong>Design Pivot:</strong> Initially, I wanted to create a humpback whale but after the prototype, I decided to switch the humpback with an orca for aesthetic and size purposes/preferences.</li>
+
     </ul>
+
+    <p>The most challenging part about making this automaton (especially one with an added music box) was that the measurements for the distance from the orca segment to the rotating center circle must be precise and positioned at just the right rotated state; otherwise, the movement of the orca could end up looking unnatural or janky. So, it took a little bit of trial and error to get to the point of at least some satisfaction.</p>
+  </section>
+
+  <!-- Challenges -->
+  <section class="cloud-card">
+    <h2>Challenges & Problem Solving</h2>
+
+    <p>There were many challenges I faced during the making of this music box automaton.</p>
+
+    <div class="challenge-block">
+      <p><strong>Challenge 1 — The Shepherd's Hook Fix:</strong> One such challenge was that I had made the mistake of getting the small pole inside the hole (at the underside of the orca) to be 3D printed in the attached state. I realized that getting the gold wire inside the hole and then bending such a stiff wire from between the back wall of the hole and the small pole would have been impossible to do. Instead, I should have 3D printed the pole separately without it already attached to the orca. Nonetheless, to solve this problem, I first bent the wire to make a closed shepherd's hook. Then, I cut out each of the 3 poles from the orca's underside with an exacto knife, which was a very difficult task. Instead of using these poles, I decided to use the sturdier gold wire as replacement poles, so I cut 3 small pieces of the wire. Then, I inserted and glued the long shepherd's hook wire into the orca's underside hole with the small piece of wire already inserted through the loop of the shepherd's hook.</p>
+    </div>
+
+    <div class="challenge-block">
+      <p><strong>Challenge 2 — Wire Alignment:</strong> Another challenge was getting the wire to move through the hole without it tilting off-center too much. To fix this, I added some starfish-shaped clamps over the main box's hole from the inside and the outside (top). At the same time, the wire had to be perfectly straight so that it would be able to move up and down through the main box's hole smoothly, without getting stuck. A larger hole may solve this, but that would also make the wire harder to balance on the center rotating circles. Having predicted this issue, I initially wanted to use metal rods, but then I realized that the metal rods would be impossible to bend (to make the shepherd's hook) without metalworking (heating it up to an extremely high temperature), so I had no choice but to opt for the gold wires. Still, after some tweaking, I got the automata to be able to move through the holes somewhat smoothly, but I may need to do extra tweaking to improve the movement further.</p>
+    </div>
   </section>
 
   <!-- Tools & Techniques -->
@@ -593,6 +658,17 @@
         <div class="info-value">Woodworking, Sanding</div>
       </div>
     </div>
+
+    <h2 style="margin-top: 35px;">Materials</h2>
+    <ul class="materials-list">
+      <li>¼" birch plywood</li>
+      <li>3D printed white orca</li>
+      <li>Black acrylic paint (to paint orca)</li>
+      <li>Gold 6 gauge aluminum wire</li>
+      <li>2 music boxes — one plays <em>"Fly Me to the Moon"</em> and the other plays <em>"Isabella's Lullaby"</em> from The Promised Neverland</li>
+      <li>Small gold hinges (to attach orca segments)</li>
+      <li>Velcro (used to make the music boxes interchangeable and detachable from the shelf)</li>
+    </ul>
   </section>
 
   <!-- Navigation -->
@@ -605,7 +681,6 @@
 </div>
 
 <script>
-  // Create twinkling stars
   const stars=document.getElementById('stars');
   for(let i=0;i<60;i++){
     const s=document.createElement('div');
@@ -617,7 +692,6 @@
     stars.appendChild(s);
   }
 
-  // Create floating clouds
   const clouds=document.getElementById('clouds');
   for(let i=0;i<5;i++){
     const c=document.createElement('div');
@@ -631,7 +705,6 @@
     clouds.appendChild(c);
   }
 
-  // Scroll animation
   const cards=document.querySelectorAll('.cloud-card');
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
