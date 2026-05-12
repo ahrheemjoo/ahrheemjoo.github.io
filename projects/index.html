@@ -211,14 +211,14 @@
             overflow: hidden;
         }
 
-        .project-image img {
+        .project-image img, video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
 
-        .project-card:hover .project-image img {
+        .project-card:hover .project-image img, video {
             transform: scale(1.1);
         }
 
@@ -347,6 +347,7 @@
             <button class="filter-btn" data-filter="illustration">Illustrations</button>
             <button class="filter-btn" data-filter="traditional">Traditional Art</button>
             <button class="filter-btn" data-filter="game">Games / Interactive</button>
+            <button class="filter-btn" data-filter="motion">Motion</button>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
@@ -545,6 +546,27 @@
                 </div>
             </div>
 
+            <!-- Last Ditch Effort -->
+            <div class="project-card" data-category="graphics motion">
+                <div class="project-image">
+                    <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+                        <source src="https://i.imgur.com/XmInXQ4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="project-content">
+                    <h3>Last Ditch Effort</h3>
+                    <p>A motion graphic poster capturing the feeling of one final push when the odds are stacked against you.</p>
+                    <div class="project-tags">
+                        <span class="tag">Motion Graphics</span>
+                        <span class="tag">Animation</span>
+                        <span class="tag">Graphic Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="./last-ditch-effort-motion-graphic/" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Recycled Memories -->
             <div class="project-card" data-category="traditional">
                 <div class="project-image">
@@ -641,7 +663,8 @@
                 const filter = btn.getAttribute('data-filter');
 
                 projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    const categories = card.getAttribute('data-category').split(' ');
+                    if (filter === 'all' || categories.includes(filter)) {
                         card.style.display = 'block';
                         setTimeout(() => {
                             card.style.animation = 'projectAppear 0.6s ease-out';
