@@ -104,8 +104,7 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .sec-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);font-weight:300;margin-bottom:11px;display:flex;align-items:center;gap:12px;}
 .sec-lbl::before,.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border-lt);}
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,16vw,190px),1fr));gap:5px;margin-bottom:28px;}
-.p-item{aspect-ratio:4/3;background-size:contain;background-position:center;background-color:var(--rose-xlt);border:1px solid var(--border-lt);cursor:pointer;position:relative;overflow:hidden;transition:border-color .18s,opacity .18s;}
-.p-item:hover{border-color:var(--rose-mid);}
+.p-item{aspect-ratio:4/3;background-size:cover;background-repeat:no-repeat;background-position:center;background-color:var(--rose-xlt);...}.p-item:hover{border-color:var(--rose-mid);}
 .p-item:active{opacity:.82;}
 .p-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(252,238,245,.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;font-weight:300;color:var(--text-mid);padding:3px 7px;opacity:0;transition:opacity .18s;}
 .p-item:hover .p-cap{opacity:1;}
@@ -172,6 +171,20 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
   transition: opacity .25s ease, visibility .25s ease;
 }
 #lb.open { opacity: 1; visibility: visible; pointer-events: all; }
+
+
+#fs-btn {
+  position: fixed; bottom: 18px; right: 18px; z-index: 9700;
+  background: rgba(252,238,245,.82); border: 1px solid var(--border);
+  color: var(--rose); font-size: 13px; cursor: pointer;
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background .2s, border-color .2s;
+  font-family: 'Cormorant Garamond', serif;
+}
+#fs-btn:hover { background: var(--rose-xlt); border-color: var(--rose-mid); }
+
+
   
 </style>
 </head>
@@ -280,11 +293,11 @@ const PROJECTS = [
       img(BAG,'blackWings-back3_MultiWayBagOfFlightsAndDreams.jpg','Black wings — studio 3'),
       img(BAG,'blackWings-side_MultiWayBagOfFlightsAndDreams.jpg','Black wings — side'),
       img(BAG,'blackWings-closeup-back_MultiWayBagOfFlightsAndDreams.jpg','Black wings — closeup'),
-      img(BAG,'blackWings-closeup-back2_MultiWayBag OfFlightsAndDreams.jpg','Black wings — closeup 2'),
+      img(BAG,'blackWings-closeup-back2_MultiWayBagOfFlightsAndDreams.jpg','Black wings — closeup 2'),
       img(BAG,'blackWings-sittingOn_MultiWayBagOfFlightsAndDreams.jpg','Sitting on — 1'),
       img(BAG,'blackWings-sittingOn2_MultiWayBagOfFlightsAndDreams.jpg','Sitting on — 2'),
       img(BAG,'blackWings-sittingOff1_MultiWayBagOfFlightsAndDreams.jpg','Sitting off — 1'),
-      img(BAG,'blackWings-sittingOff2_MultiWayBag OfFlightsAndDreams.jpg','Sitting off — 2'),
+      img(BAG,'blackWings-sittingOff2_MultiWayBagOfFlightsAndDreams.jpg','Sitting off — 2'),
       img(BAG,'sideview-closeup_MultiWayBagOfFlightsAndDreams.jpg','Side view closeup'),
       img(BAG,'Inside-Unzipped_MultiWayBagOfFlightsAndDreams.jpg','Interior — unzipped'),
       img(BAG,'Inside-Zipped_MultiWayBagOfFlightsAndDreams.jpg','Interior — zipped'),
@@ -661,8 +674,25 @@ function tick(){
 }
 tick(); setInterval(tick,15000);
 
+  // ── FULLSCREEN ────────────────────────────────
+const fsBtn = document.getElementById('fs-btn');
+function updateFsBtn() {
+  fsBtn.textContent = document.fullscreenElement ? '✕' : '⛶';
+  fsBtn.title = document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen';
+}
+fsBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+});
+document.addEventListener('fullscreenchange', updateFsBtn);
+  
 // ── START ─────────────────────────────────────
 startAttract();
 </script>
+  <button id="fs-btn" title="Toggle fullscreen">⛶</button>
+  
 </body>
 </html>
