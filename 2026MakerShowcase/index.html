@@ -432,7 +432,7 @@ async function buildAttractSlides() {
     else                { groups.push([cur]);        i += 1; }
   }
 
-  groups.forEach((group, idx) => {
+groups.forEach((group, idx) => {
     const d = document.createElement('div');
     d.className = 'att-slide' + (idx === 0 ? ' on' : '');
 
@@ -445,11 +445,9 @@ async function buildAttractSlides() {
         d.appendChild(half);
       });
     } else {
-      const item  = group[0];
+      const item   = group[0];
       const isTall = item.h > item.w * 1.15;
-      // Very wide images that crop badly also get contain
       const tooWide = item.w > item.h * 2.2;
-      d.style.backgroundImage = `url("${item.src}")`;
       if (isTall || tooWide) {
         d.classList.add('att-slide-contain');
         d.style.cssText = `
@@ -465,7 +463,8 @@ async function buildAttractSlides() {
       } else {
         d.style.backgroundImage = `url("${item.src}")`;
       }
-    attSlidesEl.appendChild(d);
+    }                          // ← was missing
+    attSlidesEl.appendChild(d); // ← moved outside if/else so duo slides also get appended
   });
 }
 
