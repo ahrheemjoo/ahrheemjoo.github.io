@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Portfolio Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fceef5; --panel:#fff8fc;
+  --rose:#c4788f; --rose-mid:#dba5b8;
+  --rose-lt:#f0ccd9; --rose-xlt:#fae6ef;
+  --text:#4a2236; --text-mid:#8a6070; --text-dim:#b898a4;
+  --border:#ecd4df; --border-lt:#f6e8ef;
+  --shadow:rgba(180,100,130,.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-serif;height:100vh;height:100dvh;overflow:hidden;user-select:none;-webkit-user-select:none;}
+
+/* LACE */
+#lace{position:fixed;inset:0;pointer-events:none;z-index:9800;
+  box-shadow:inset 0 0 0 1.5px rgba(196,120,143,.38),inset 0 0 0 10px rgba(196,120,143,.11),inset 0 0 0 15px rgba(196,120,143,.05),inset 0 0 70px rgba(196,120,143,.04);}
+#lace::before{content:'';position:absolute;inset:6px;border:1px solid rgba(196,120,143,.16);}
+.lc{position:absolute;font-size:15px;line-height:1;color:rgba(196,120,143,.55);}
+.lc.tl{top:-3px;left:-1px;}.lc.tr{top:-3px;right:-1px;}
+.lc.bl{bottom:-3px;left:-1px;}.lc.br{bottom:-3px;right:-1px;}
+.lm{position:absolute;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:8px;white-space:nowrap;color:rgba(196,120,143,.36);}
+.lm.t{top:3px;}.lm.b{bottom:3px;}
+
+/* SCREENS */
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .48s ease;z-index:1;}
+.screen.active{opacity:1;pointer-events:all;z-index:2;}
+
+/* ── A: ATTRACT ── */
+#s-attract{background:#1a0b12;cursor:pointer;overflow:hidden;}
+.att-slides{position:absolute;inset:0;}
+.att-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease;}
+.att-slide.on{opacity:1;}
+.att-vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 36%,rgba(26,11,18,.38) 100%),
+             linear-gradient(180deg,transparent 55%,rgba(26,11,18,.55) 100%);}
+.att-cta{position:absolute;bottom:30px;left:0;right:0;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:15px;
+  letter-spacing:3px;color:rgba(252,224,236,.68);pointer-events:none;
+  animation:gpulse 2.8s ease infinite;}
+@keyframes gpulse{0%,100%{opacity:.68;}50%{opacity:.25;}}
+
+/* ── B: SELECT ── */
+#s-select{background:var(--bg);}
+.sel-hdr{display:flex;align-items:center;justify-content:space-between;padding:13px 26px;border-bottom:1px solid var(--border-lt);flex-shrink:0;}
+.brand{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text);}
+.brand em{font-style:italic;color:var(--rose);}
+.hdr-r{display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
+#clock{color:var(--text-mid);}
+.sel-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 26px 26px;gap:20px;overflow:hidden;}
+.sel-title{text-align:center;}
+.sel-title .deco{font-size:9px;letter-spacing:8px;display:block;color:var(--rose-mid);margin-bottom:8px;font-weight:300;}
+.sel-title h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(20px,3.5vw,32px);letter-spacing:2px;}
+.sel-title .rule{width:50px;height:1px;background:var(--border);margin:10px auto 0;}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:1020px;}
+.ch-card{background:var(--panel);border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;overflow:hidden;box-shadow:0 2px 18px var(--shadow);transition:border-color .28s,box-shadow .28s,transform .22s;}
+.ch-card:hover{border-color:var(--rose-mid);box-shadow:0 6px 36px rgba(196,120,143,.13);transform:translateY(-4px);}
+.ch-card:active{transform:translateY(-1px) scale(.99);}
+.card-thumb{width:100%;aspect-ratio:16/10;background-size:cover;background-position:center;flex-shrink:0;position:relative;overflow:hidden;}
+.card-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(252,238,245,.7) 100%);}
+.card-ch{position:absolute;top:9px;left:9px;z-index:1;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:300;background:rgba(252,238,245,.9);padding:3px 9px;border:1px solid var(--border);}
+.card-info{padding:13px 15px 9px;flex:1;display:flex;flex-direction:column;gap:5px;}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,22px);font-weight:600;line-height:1.15;color:var(--text);}
+.card-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(11px,1.3vw,13px);color:var(--text-mid);}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.tag{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);background:var(--rose-xlt);padding:2px 7px;border:1px solid var(--rose-lt);font-weight:300;}
+.card-ft{padding:8px 15px;border-top:1px solid var(--border-lt);display:flex;align-items:center;justify-content:space-between;}
+.card-yr{font-size:8px;letter-spacing:2px;color:var(--text-dim);font-weight:200;}
+.card-cta{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:300;color:var(--rose);}
+.idle-row{display:flex;align-items:center;gap:11px;width:100%;max-width:1020px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
+.idle-track{flex:1;height:1px;background:var(--border-lt);position:relative;overflow:hidden;}
+.idle-fill{position:absolute;inset:0;background:var(--rose-mid);width:100%;}
+
+/* ── C: DETAIL ── */
+#s-detail{background:var(--bg);}
+.det-hdr{display:flex;align-items:center;gap:13px;padding:10px 22px;border-bottom:1px solid var(--border-lt);flex-shrink:0;background:var(--bg);}
+.back-btn{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:300;color:var(--rose);background:none;border:1px solid var(--border);padding:5px 13px;cursor:pointer;letter-spacing:1px;transition:background .2s,border-color .2s;white-space:nowrap;flex-shrink:0;}
+.back-btn:hover{background:var(--rose-xlt);border-color:var(--rose-mid);}
+.det-title{flex:1;overflow:hidden;}
+.det-ch{display:block;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:300;margin-bottom:1px;}
+.det-name{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2.2vw,22px);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.det-ibar{flex-shrink:0;width:70px;}
+.det-itrack{height:1px;background:var(--border-lt);position:relative;overflow:hidden;}
+.det-ifill{position:absolute;inset:0;background:var(--rose-lt);width:100%;}
+.det-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
+.det-scroll::-webkit-scrollbar{width:3px;}
+.det-scroll::-webkit-scrollbar-thumb{background:var(--border);}
+.det-inner{padding:26px;max-width:1160px;margin:0 auto;}
+.hero{width:100%;height:clamp(200px,50vh,480px);background-size:cover;background-position:center;border:1px solid var(--border-lt);margin-bottom:20px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .2s;}
+.hero:hover{border-color:var(--rose-mid);}
+.hero-cap{position:absolute;bottom:0;left:0;right:0;padding:6px 14px;background:rgba(252,238,245,.88);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;font-weight:300;color:var(--text-mid);}
+.det-info-row{display:flex;gap:34px;margin-bottom:28px;flex-wrap:wrap;}
+.det-desc{flex:1;min-width:200px;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;line-height:1.9;color:var(--text-mid);}
+.det-attrs{flex-shrink:0;display:flex;flex-direction:column;gap:12px;}
+.attr strong{display:block;font-size:7px;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);font-weight:400;margin-bottom:3px;}
+.attr span{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.55;display:block;}
+.sec-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);font-weight:300;margin-bottom:11px;display:flex;align-items:center;gap:12px;}
+.sec-lbl::before,.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border-lt);}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,16vw,190px),1fr));gap:5px;margin-bottom:28px;}
+.p-item{aspect-ratio:4/3;background-size:cover;background-position:center;background-color:var(--rose-xlt);border:1px solid var(--border-lt);cursor:pointer;position:relative;overflow:hidden;transition:border-color .18s,opacity .18s;}
+.p-item:hover{border-color:var(--rose-mid);}
+.p-item:active{opacity:.82;}
+.p-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(252,238,245,.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;font-weight:300;color:var(--text-mid);padding:3px 7px;opacity:0;transition:opacity .18s;}
+.p-item:hover .p-cap{opacity:1;}
+.vid-section{margin-bottom:32px;display:flex;flex-direction:column;gap:8px;}
+.vid-wrap{width:100%;aspect-ratio:16/9;background:#1a0b12;border:1px solid var(--border-lt);overflow:hidden;}
+.vid-wrap video{width:100%;height:100%;object-fit:contain;}
+.vid-cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;font-weight:300;color:var(--text-dim);padding:4px 2px;}
+
+/* LIGHTBOX */
+#lb{position:fixed;inset:0;z-index:9000;background:rgba(26,11,18,.96);display:none;flex-direction:column;align-items:center;justify-content:center;}
+#lb.open{display:flex;}
+#lb::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:10;box-shadow:inset 0 0 0 1px rgba(196,120,143,.25),inset 0 0 0 7px rgba(196,120,143,.09);}
+.lb-bar{position:absolute;top:0;left:0;right:0;padding:13px 20px;z-index:11;display:flex;align-items:center;justify-content:space-between;}
+.lb-ctr{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(219,165,184,.42);font-weight:300;}
+.lb-x{font-size:18px;cursor:pointer;color:rgba(219,165,184,.5);background:none;border:none;transition:color .2s;line-height:1;}
+.lb-x:hover{color:rgba(219,165,184,.95);}
+.lb-stage{display:flex;align-items:center;justify-content:center;width:100%;flex:1;padding:60px 80px;position:relative;}
+.lb-img{width:100%;height:80vh;background-size:contain;background-repeat:no-repeat;background-position:center;}
+.lb-vid{max-width:100%;max-height:80vh;}
+.lb-arr{position:absolute;top:50%;transform:translateY(-50%);font-size:30px;cursor:pointer;color:rgba(219,165,184,.38);background:none;border:none;padding:16px;transition:color .2s;z-index:2;font-family:'Cormorant Garamond',serif;}
+.lb-arr:hover{color:rgba(219,165,184,.95);}
+#lb-prev{left:4px;}#lb-next{right:4px;}
+.lb-foot{position:absolute;bottom:0;left:0;right:0;padding:11px 24px;text-align:center;z-index:11;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;font-weight:300;color:rgba(219,165,184,.4);}
+
+@media(max-width:700px){
+  .cards{grid-template-columns:1fr;max-height:calc(100dvh - 220px);overflow-y:auto;}
+  .photo-grid{grid-template-columns:repeat(2,1fr);}
+  .det-info-row{flex-direction:column;gap:14px;}
+  .lb-stage{padding:60px 44px;}
+}
+@media(max-width:480px){.det-inner{padding:14px;}.hero{height:clamp(180px,40vh,320px);}}
+</style>
+</head>
+<body>
+
+<div id="lace" aria-hidden="true">
+  <span class="lc tl">✿</span><span class="lc tr">✿</span>
+  <span class="lc bl">✿</span><span class="lc br">✿</span>
+  <span class="lm t">✦ · ✦ · ✦</span>
+  <span class="lm b">✦ · ✦ · ✦</span>
+</div>
+
+<div class="screen active" id="s-attract">
+  <div class="att-slides" id="att-slides"></div>
+  <div class="att-vignette"></div>
+  <div class="att-cta">touch to begin</div>
+</div>
+
+<div class="screen" id="s-select">
+  <div class="sel-hdr">
+    <div class="brand">Portfolio <em>·</em> Showcase</div>
+    <div class="hdr-r"><span id="clock">--:--</span><span>Select a Programme</span></div>
+  </div>
+  <div class="sel-body">
+    <div class="sel-title">
+      <span class="deco">✦ · ✦ · ✦</span>
+      <h2>Please select a programme</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="idle-row">
+      <span>Returning in</span>
+      <div class="idle-track"><div class="idle-fill" id="sel-fill"></div></div>
+      <span id="sel-num">5s</span>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="s-detail">
+  <div class="det-hdr">
+    <button class="back-btn" id="back-btn">← Back</button>
+    <div class="det-title">
+      <span class="det-ch" id="det-ch"></span>
+      <div class="det-name" id="det-name"></div>
+    </div>
+    <div class="det-ibar"><div class="det-itrack"><div class="det-ifill" id="det-fill"></div></div></div>
+  </div>
+  <div class="det-scroll" id="det-scroll">
+    <div class="det-inner" id="det-inner"></div>
+  </div>
+</div>
+
+<div id="lb">
+  <div class="lb-bar">
+    <span class="lb-ctr" id="lb-ctr">1 / 1</span>
+    <button class="lb-x" id="lb-x">✕</button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-arr" id="lb-prev">‹</button>
+    <div id="lb-content"></div>
+    <button class="lb-arr" id="lb-next">›</button>
+  </div>
+  <div class="lb-foot" id="lb-cap"></div>
+</div>
+
+<script>
+// ── PATH HELPERS ─────────────────────────────
+const BAG  = 'images/projects/multi-style-corset-bag_flights-and-dreams/';
+const LAMP = 'images/projects/eagle-lamp/';
+const ORCA = 'images/projects/orca-automaton/';
+const enc  = s => s.replace(/ /g,'%20').replace(/\(/g,'%28').replace(/\)/g,'%29');
+const p    = (base,name)           => base + enc(name);
+const img  = (base,name,cap='')    => ({type:'image',src:p(base,name),caption:cap});
+const vid  = (base,name,cap='')    => ({type:'video',src:p(base,name),caption:cap});
+
+// ── PROJECTS ─────────────────────────────────
+const PROJECTS = [
+  {
+    channel:'Ch. I', name:'Flights & Dreams', subtitle:'Multi-Style Corset Bag',
+    year:'2024', tags:['Accessories','Fashion','Corsetry'],
+    desc:'A multi-way corset bag designed to transform with its wearer — interchangeable wing sets shift from delicate bunny to dramatic black, each telling a different story. Fully functional with interior pockets, a colour-changing wing mechanism, and a corset-lacing system that adjusts the silhouette.',
+    thumb: p(BAG,'bunny-dressCoord2_MultiWayBagOfFlightsAndDreams.jpg'),
+    attract:[
+      p(BAG,'bunny-dressCoord_MultiWayBagOfFlightsAndDreams.jpg'),
+      p(BAG,'blackWings-hall-side_MultiWayBagOfFlightsAndDreams.jpg'),
+      p(BAG,'blackWings-dressCoord-back1_MultiWayBagOfFlightsAndDreams.jpg'),
+    ],
+    media:[
+      img(BAG,'bunny-dressCoord_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — full coord'),
+      img(BAG,'bunny-dressCoord2_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — coord 2'),
+      img(BAG,'bunny-dressCoord3_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — coord 3'),
+      img(BAG,'bunny-dressCoord4_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — coord 4'),
+      img(BAG,'bunny-back1_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — back'),
+      img(BAG,'bunny-back2_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — back detail'),
+      img(BAG,'bunny-side_MultiWayBagOfFlightsAndDreams.jpg','Bunny wings — side'),
+      img(BAG,'WBwings-back_MultiWayBagOfFlightsAndDreams (1).jpg','White wings — back'),
+      img(BAG,'WBwings-back2_MultiWayBagOfFlightsAndDreams.jpg','White wings — back 2'),
+      img(BAG,'WBwings-back3_MultiWayBagOfFlightsAndDreams.jpg','White wings — back 3'),
+      img(BAG,'blackWings-dressCoord-back1_MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord back'),
+      img(BAG,'blackWings-dressCoord-back2_MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord back 2'),
+      img(BAG,'blackWings-dressCoord-side MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord side'),
+      img(BAG,'blackWings-hall-back_MultiWayBagOfFlightsAndDreams.jpg','Black wings — hall back'),
+      img(BAG,'blackWings-hall-side_MultiWayBagOfFlightsAndDreams.jpg','Black wings — hall side'),
+      img(BAG,'blackWings-back1_MultiWayBagOfFlightsAndDreams.jpg','Black wings — studio 1'),
+      img(BAG,'blackWings-back2_MultiWayBagOfFlightsAndDreams.jpg','Black wings — studio 2'),
+      img(BAG,'blackWings-back3_MultiWayBagOfFlightsAndDreams.jpg','Black wings — studio 3'),
+      img(BAG,'blackWings-side_MultiWayBagOfFlightsAndDreams.jpg','Black wings — side'),
+      img(BAG,'blackWings-closeup-back_MultiWayBagOfFlightsAndDreams.jpg','Black wings — closeup'),
+      img(BAG,'blackWings-closeup-back2_MultiWayBag OfFlightsAndDreams.jpg','Black wings — closeup 2'),
+      img(BAG,'blackWings-sittingOn_MultiWayBagOfFlightsAndDreams.jpg','Sitting on — 1'),
+      img(BAG,'blackWings-sittingOn2_MultiWayBagOfFlightsAndDreams.jpg','Sitting on — 2'),
+      img(BAG,'blackWings-sittingOff1_MultiWayBagOfFlightsAndDreams.jpg','Sitting off — 1'),
+      img(BAG,'blackWings-sittingOff2_MultiWayBag OfFlightsAndDreams.jpg','Sitting off — 2'),
+      img(BAG,'sideview-closeup_MultiWayBagOfFlightsAndDreams.jpg','Side view closeup'),
+      img(BAG,'Inside-Unzipped_MultiWayBagOfFlightsAndDreams.jpg','Interior — unzipped'),
+      img(BAG,'Inside-Zipped_MultiWayBagOfFlightsAndDreams.jpg','Interior — zipped'),
+      vid(BAG,'WBwings-colorChangingWings-videoDemo_MultiWayBagOfFlightsAndDreams.mp4','White wings — colour-change demo'),
+      vid(BAG,'blackWings-colorChangingWings-videoDemo_MultiWayBag OfFlightsAndDreams.mp4','Black wings — colour-change demo'),
+    ]
+  },
+  {
+    channel:'Ch. II', name:'Angel of Death', subtitle:'Eagle Night Lamp',
+    year:'2023', tags:['Lighting','3D Print','Electronics'],
+    desc:'A handcrafted eagle lamp with a detachable moon-girl figure — engineered from scratch with custom 3D-printed parts, laser-cut components, and programmable RGB lighting. Seven structural pieces assemble into a winged silhouette that glows in any colour.',
+    thumb: p(LAMP,'eagle_night_lamp_main_image.jpg'),
+    attract:[
+      p(LAMP,'eagle_lamp_blue_wings_moon_on.jpg'),
+      p(LAMP,'moon_girl_lit.jpg'),
+      p(LAMP,'eagle_lamp_pink_light.jpg'),
+    ],
+    media:[
+      img(LAMP,'eagle_night_lamp_main_image.jpg','Eagle Night Lamp — main'),
+      img(LAMP,'eagle_lamp_off_hung_solo.jpg','Hung — solo'),
+      img(LAMP,'eagle_lamp_off_hung.jpg','Hung — environment'),
+      img(LAMP,'eagle_lamp_off_hung_with_crochet_basket.jpg','Hung with basket'),
+      img(LAMP,'eagle_lamp_on_table.jpg','On table'),
+      img(LAMP,'eagle_lamp_on_table_bottom_angle.jpg','On table — bottom angle'),
+      img(LAMP,'eagle_lamp_angled_light_source.jpg','Angled light source'),
+      img(LAMP,'eagle_lamp_blue_wings_moon_on.jpg','Blue light — moon on'),
+      img(LAMP,'eagle_lamp_pink_light.jpg','Pink light'),
+      img(LAMP,'eagle_lamp_green_light.jpg','Green light'),
+      img(LAMP,'eagle_lamp_red_light.jpg','Red light'),
+      img(LAMP,'eagle_lamp_yellow_light.jpg','Yellow light'),
+      img(LAMP,'eagle_lamp_white_light_source.jpg','White light'),
+      img(LAMP,'moon_girl_front.jpg','Moon girl — front'),
+      img(LAMP,'moon_girl_back.jpg','Moon girl — back'),
+      img(LAMP,'moon_girl_lit.jpg','Moon girl — lit'),
+      img(LAMP,'moon_girl_bottom-light.jpg','Moon girl — bottom light'),
+      img(LAMP,'eagle_lamp_on_wing_holes_closeup.jpg','Wing holes closeup'),
+      img(LAMP,'eagle_lamp_open_back.jpg','Open back'),
+      img(LAMP,'eagle_lamp_back-side.jpg','Back side'),
+      img(LAMP,'eagle_lamp_finished_bottom.jpg','Finished bottom'),
+      img(LAMP,'eagle_lamp_assembly-WIP.jpg','Assembly WIP'),
+      img(LAMP,'eagle_lamp_leg part crosssection.jpg','Leg part cross-section'),
+      img(LAMP,'eagle_3D_print_parts_preassembly.jpg','3D print parts'),
+      img(LAMP,'moon_girl_makerspace_progress.jpg','Moon girl — makerspace'),
+      img(LAMP,'moon_girl_makerspace_progress_2.jpg','Moon girl — makerspace 2'),
+      img(LAMP,'eagle-lamp-7-parts.png','Design — 7 parts'),
+      img(LAMP,'eagle-lamp-7-parts-top-view.png','Design — top view'),
+      img(LAMP,'eagle-lamp-cutting-and-rigging-process.png','Design — cutting & rigging'),
+      img(LAMP,'Lamp-wing-Cuts-v5-edited.png','Design — wing cuts'),
+      img(LAMP,'Eagle-lamp-tail-cutter.png','Design — tail cutter'),
+      img(LAMP,'keyhole-cutter-edited.png','Design — keyhole cutter'),
+      img(LAMP,'moon-girl-bones.png','Design — moon girl bones'),
+      img(LAMP,'moon-girl-lamp-bone-rigging-.png','Design — bone rigging'),
+    ]
+  },
+  {
+    channel:'Ch. III', name:'Orca Music Box', subtitle:'Automaton',
+    year:'2023', tags:['Woodwork','Automaton','Mechanism'],
+    desc:'A handcrafted wooden automaton housing a removable music box mechanism — activated by a hand crank that sets the orca atop its vessel in motion. Designed in 3D, prototyped in cardboard, then built in wood with a sliding drawer that locks the music box in place.',
+    thumb: p(ORCA,'Orca-Music-Box-Automaton-Vessel-Solid-Background-Angle-3.png'),
+    attract:[
+      p(ORCA,'orca-automaton_3D-model-underwater.jpg'),
+      p(ORCA,'Orca-Music-Box-Automaton-Vessel-Solid-Background-Angle-3.png'),
+      p(ORCA,'orca-automaton_main-front.jpg'),
+    ],
+    media:[
+      img(ORCA,'orca-automaton_main-front.jpg','Main front'),
+      img(ORCA,'Orca-Music-Box-Automaton-Vessel-Solid-Background-Angle-3.png','Vessel — angled'),
+      img(ORCA,'orca-automaton_front-top-angled.jpg','Front top angled'),
+      img(ORCA,'orca-automaton_left.jpg','Left side'),
+      img(ORCA,'orca-automaton_rightSide.jpg','Right side'),
+      img(ORCA,'orca-automaton_back.jpg','Back'),
+      img(ORCA,'orca-automaton_back-leftSide.jpg','Back left'),
+      img(ORCA,'orca-automaton_back-rightSide.jpg','Back right'),
+      img(ORCA,'orca-automaton_orca-front.jpg','Orca — front'),
+      img(ORCA,'orca-automaton_orca-top.jpg','Orca — top'),
+      img(ORCA,'orca-automaton_orca-top-angle.jpg','Orca — top angle'),
+      img(ORCA,'orca-automaton_orca-topFace.jpg','Orca — face'),
+      img(ORCA,'orca-automaton_front-drawerOpen.jpg','Drawer open'),
+      img(ORCA,'orca-automaton_front-drawerOpen-noMusicBox.jpg','Drawer — no music box'),
+      img(ORCA,'orca-automaton_front-musicBoxSlot.jpg','Music box slot'),
+      img(ORCA,'orca-automaton_front-openDrawer.jpg','Open drawer'),
+      img(ORCA,'orca-automaton_front-top-openDrawer.jpg','Top — open drawer'),
+      img(ORCA,'orca-automaton_front-top-openDrawer-closeView.jpg','Open drawer close view'),
+      img(ORCA,'orca-automaton_frontLeft-drawerOpen.jpg','Front left — drawer open'),
+      img(ORCA,'orca-automaton_innerTop.jpg','Inner top'),
+      img(ORCA,'orca-automaton_crankHandle.jpg','Crank handle'),
+      img(ORCA,'orca-automaton_3D-model-plain.jpg','3D model — plain'),
+      img(ORCA,'orca-automaton_3D-model-room.jpg','3D model — room'),
+      img(ORCA,'orca-automaton_3D-model-underwater.jpg','3D model — underwater'),
+      img(ORCA,'orca_music_box_3D_printing.jpg','3D printing'),
+      img(ORCA,'orca_music_box_cardboard_prototype.jpg','Cardboard prototype'),
+      img(ORCA,'orca_music_box_final_stages_workshop_progress.jpg','Final stages'),
+      img(ORCA,'orca_music_box_painting_and_assembling.jpg','Painting & assembling'),
+      vid(ORCA,'orca-automaton_demo1.mp4','Demo 1 — mechanism in action'),
+      vid(ORCA,'orca-automaton_demo2.mp4','Demo 2 — full sequence'),
+    ]
+  }
+];
+
+// ── CONFIG ────────────────────────────────────
+const IDLE_MS  = 5000;
+const SLIDE_MS = 4200;
+
+// ── STATE ─────────────────────────────────────
+let state='attract', idleTimer=null, idleRAF=null, idleStart=null;
+let attTimer=null, attIdx=0, lbItems=[], lbIdx=0;
+
+const $scr={
+  attract:document.getElementById('s-attract'),
+  select:document.getElementById('s-select'),
+  detail:document.getElementById('s-detail'),
+};
+const attSlidesEl = document.getElementById('att-slides');
+const cardsEl  = document.getElementById('cards');
+const selFill  = document.getElementById('sel-fill');
+const selNum   = document.getElementById('sel-num');
+const detFill  = document.getElementById('det-fill');
+const lbEl     = document.getElementById('lb');
+
+// ── BUILD ATTRACT SLIDES ──────────────────────
+const attractAll = PROJECTS.flatMap(pr => pr.attract);
+attractAll.forEach((src,i) => {
+  const d = document.createElement('div');
+  d.className = 'att-slide' + (i===0?' on':'');
+  d.style.backgroundImage = `url("${src}")`;
+  attSlidesEl.appendChild(d);
+});
+function advanceAttract(){
+  const sl = attSlidesEl.querySelectorAll('.att-slide');
+  sl[attIdx].classList.remove('on');
+  attIdx = (attIdx+1) % sl.length;
+  sl[attIdx].classList.add('on');
+}
+function startAttract(){
+  if(lbEl.classList.contains('open')) closeLb();
+  goTo('attract'); clearIdle();
+  clearInterval(attTimer);
+  attTimer = setInterval(advanceAttract, SLIDE_MS);
+}
+$scr.attract.addEventListener('click', ()=>{ clearInterval(attTimer); goTo('select'); startIdle(); });
+
+// ── BUILD CARDS ───────────────────────────────
+PROJECTS.forEach((pr,i) => {
+  const ni = pr.media.filter(m=>m.type==='image').length;
+  const nv = pr.media.filter(m=>m.type==='video').length;
+  const card = document.createElement('div');
+  card.className = 'ch-card';
+  card.innerHTML = `
+    <div class="card-thumb" style="background-image:url('${pr.thumb}')">
+      <span class="card-ch">${pr.channel}</span>
+    </div>
+    <div class="card-info">
+      <div class="card-name">${pr.name}</div>
+      <div class="card-sub">${pr.subtitle}</div>
+      <div class="card-tags">${pr.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="card-ft">
+      <span class="card-yr">${pr.year} · ${ni} photos${nv?` · ${nv} video${nv>1?'s':''}`:''}
+      </span>
+      <span class="card-cta">View ›</span>
+    </div>`;
+  card.addEventListener('click', ()=>openProject(i));
+  cardsEl.appendChild(card);
+});
+
+// ── SCREEN TRANSITIONS ────────────────────────
+function goTo(name){
+  if(state===name) return;
+  if(state==='attract') clearInterval(attTimer);
+  $scr[state].classList.remove('active');
+  state = name;
+  $scr[state].classList.add('active');
+}
+
+// ── IDLE SYSTEM ───────────────────────────────
+function startIdle(){
+  clearIdle(); idleStart = performance.now(); animIdle();
+  let n = Math.ceil(IDLE_MS/1000);
+  selNum.textContent = n+'s';
+  const ci = setInterval(()=>{ n=Math.max(0,n-1); selNum.textContent=n+'s'; },1000);
+  idleTimer = setTimeout(()=>{ clearInterval(ci); clearIdle(); startAttract(); }, IDLE_MS);
+}
+function animIdle(){
+  cancelAnimationFrame(idleRAF);
+  function step(now){
+    const pct = Math.max(0, 100-((now-idleStart)/IDLE_MS)*100);
+    selFill.style.width = pct+'%';
+    detFill.style.width = pct+'%';
+    if(pct>0) idleRAF = requestAnimationFrame(step);
+  }
+  idleRAF = requestAnimationFrame(step);
+}
+function resetIdle(){ if(state!=='attract') startIdle(); }
+function clearIdle(){
+  clearTimeout(idleTimer); cancelAnimationFrame(idleRAF);
+  idleTimer = null;
+  selFill.style.width='100%'; detFill.style.width='100%';
+}
+['click','touchstart','mousemove','keydown'].forEach(ev=>
+  document.addEventListener(ev, ()=>{ if(state!=='attract') resetIdle(); },{passive:true})
+);
+document.getElementById('det-scroll').addEventListener('scroll',()=>{
+  if(state==='detail') resetIdle();
+},{passive:true});
+
+// ── OPEN PROJECT ──────────────────────────────
+function openProject(idx){
+  const pr = PROJECTS[idx];
+  lbItems = pr.media;
+  document.getElementById('det-ch').textContent  = pr.channel+' · '+pr.subtitle;
+  document.getElementById('det-name').textContent = pr.name;
+  document.getElementById('det-scroll').scrollTop = 0;
+
+  const images = pr.media.filter(m=>m.type==='image');
+  const videos  = pr.media.filter(m=>m.type==='video');
+  const hero    = images[0]||{src:pr.thumb,caption:''};
+  const heroIdx = pr.media.indexOf(hero)>=0 ? pr.media.indexOf(hero) : 0;
+
+  let html = `
+    <div class="hero" style="background-image:url('${hero.src}')" data-lb="${heroIdx}">
+      ${hero.caption?`<div class="hero-cap">${hero.caption}</div>`:''}
+    </div>
+    <div class="det-info-row">
+      <div class="det-desc">${pr.desc}</div>
+      <div class="det-attrs">
+        <div class="attr"><strong>Year</strong><span>${pr.year}</span></div>
+        <div class="attr"><strong>Disciplines</strong><span>${pr.tags.join('<br>')}</span></div>
+      </div>
+    </div>`;
+
+  if(images.length){
+    html += `<div class="sec-lbl">Photography</div><div class="photo-grid">`;
+    images.forEach(m=>{
+      const li = pr.media.indexOf(m);
+      html += `<div class="p-item" style="background-image:url('${m.src}')" data-lb="${li}">
+        ${m.caption?`<div class="p-cap">${m.caption}</div>`:''}
+      </div>`;
+    });
+    html += `</div>`;
+  }
+  if(videos.length){
+    html += `<div class="sec-lbl">Video</div><div class="vid-section">`;
+    videos.forEach(m=>{
+      html += `<div class="vid-wrap">
+        <video controls preload="metadata" playsinline>
+          <source src="${m.src}">
+        </video>
+      </div>${m.caption?`<div class="vid-cap">${m.caption}</div>`:''}`;
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById('det-inner').innerHTML = html;
+  document.getElementById('det-inner').querySelectorAll('[data-lb]').forEach(el=>{
+    el.addEventListener('click', ()=>openLb(parseInt(el.getAttribute('data-lb'))));
+  });
+  goTo('detail'); startIdle();
+}
+document.getElementById('back-btn').addEventListener('click', ()=>{ goTo('select'); startIdle(); });
+
+// ── LIGHTBOX ──────────────────────────────────
+function openLb(idx){
+  lbIdx = ((idx%lbItems.length)+lbItems.length)%lbItems.length;
+  renderLb(); lbEl.classList.add('open');
+}
+function closeLb(){
+  lbEl.querySelectorAll('video').forEach(v=>{v.pause();v.currentTime=0;});
+  lbEl.classList.remove('open');
+}
+function renderLb(){
+  const item = lbItems[lbIdx];
+  const content = document.getElementById('lb-content');
+  content.innerHTML = '';
+  if(item.type==='image'){
+    const d = document.createElement('div');
+    d.className='lb-img';
+    d.style.backgroundImage=`url("${item.src}")`;
+    content.appendChild(d);
+  } else if(item.type==='video'){
+    const v = document.createElement('video');
+    v.className='lb-vid'; v.controls=true; v.autoplay=true; v.playsinline=true;
+    v.innerHTML=`<source src="${item.src}">`;
+    content.appendChild(v);
+  }
+  document.getElementById('lb-cap').textContent = item.caption||'';
+  document.getElementById('lb-ctr').textContent  = `${lbIdx+1} / ${lbItems.length}`;
+}
+function lbGo(dir){
+  document.getElementById('lb-content').querySelectorAll('video').forEach(v=>v.pause());
+  lbIdx = ((lbIdx+dir)%lbItems.length+lbItems.length)%lbItems.length;
+  renderLb(); resetIdle();
+}
+document.getElementById('lb-x').addEventListener('click', closeLb);
+document.getElementById('lb-prev').addEventListener('click', ()=>lbGo(-1));
+document.getElementById('lb-next').addEventListener('click', ()=>lbGo(+1));
+lbEl.addEventListener('click', e=>{ if(e.target===lbEl) closeLb(); });
+document.addEventListener('keydown', e=>{
+  if(!lbEl.classList.contains('open')) return;
+  if(e.key==='ArrowLeft') lbGo(-1);
+  if(e.key==='ArrowRight') lbGo(+1);
+  if(e.key==='Escape') closeLb();
+});
+let lbTx=0;
+lbEl.addEventListener('touchstart', e=>{ lbTx=e.touches[0].clientX; },{passive:true});
+lbEl.addEventListener('touchend',   e=>{
+  const dx=e.changedTouches[0].clientX-lbTx;
+  if(Math.abs(dx)>40) lbGo(dx<0?1:-1);
+},{passive:true});
+
+// ── CLOCK ─────────────────────────────────────
+function tick(){
+  const d=new Date();
+  document.getElementById('clock').textContent =
+    d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+}
+tick(); setInterval(tick,15000);
+
+// ── START ─────────────────────────────────────
+startAttract();
+</script>
+</body>
+</html>
