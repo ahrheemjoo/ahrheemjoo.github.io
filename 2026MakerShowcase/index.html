@@ -104,7 +104,7 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .sec-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);font-weight:300;margin-bottom:11px;display:flex;align-items:center;gap:12px;}
 .sec-lbl::before,.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border-lt);}
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,16vw,190px),1fr));gap:5px;margin-bottom:28px;}
-.p-item{aspect-ratio:4/3;background-size:cover;background-repeat:no-repeat;background-position:center;background-color:var(--rose-xlt);...}.p-item:hover{border-color:var(--rose-mid);}
+.p-item{aspect-ratio:4/3;background-size:cover;background-repeat:no-repeat;background-position:center;background-color:var(--rose-xlt);border:1px solid var(--border-lt);cursor:pointer;position:relative;overflow:hidden;transition:border-color .18s,opacity .18s;}
 .p-item:active{opacity:.82;}
 .p-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(252,238,245,.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;font-weight:300;color:var(--text-mid);padding:3px 7px;opacity:0;transition:opacity .18s;}
 .p-item:hover .p-cap{opacity:1;}
@@ -250,6 +250,9 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
   <div class="lb-foot" id="lb-cap"></div>
 </div>
 
+<button id="fs-btn" title="Toggle fullscreen">⛶</button>
+
+  
 <script>
 // ── PATH HELPERS ─────────────────────────────
 const BAG  = 'https://ahrheemjoo.github.io/images/projects/multi-style-corset-bag_flights-and-dreams/';
@@ -285,7 +288,7 @@ const PROJECTS = [
       img(BAG,'WBwings-back3_MultiWayBagOfFlightsAndDreams.jpg','White wings — back 3'),
       img(BAG,'blackWings-dressCoord-back1_MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord back'),
       img(BAG,'blackWings-dressCoord-back2_MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord back 2'),
-      img(BAG,'blackWings-dressCoord-side MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord side'),
+      img(BAG,'blackWings-dressCoord-side_MultiWayBagOfFlightsAndDreams.jpg','Black wings — coord side'),
       img(BAG,'blackWings-hall-back_MultiWayBagOfFlightsAndDreams.jpg','Black wings — hall back'),
       img(BAG,'blackWings-hall-side_MultiWayBagOfFlightsAndDreams.jpg','Black wings — hall side'),
       img(BAG,'blackWings-back1_MultiWayBagOfFlightsAndDreams.jpg','Black wings — studio 1'),
@@ -692,7 +695,6 @@ document.addEventListener('fullscreenchange', updateFsBtn);
 // ── START ─────────────────────────────────────
 startAttract();
 </script>
-  <button id="fs-btn" title="Toggle fullscreen">⛶</button>
   
 </body>
 </html>
