@@ -54,42 +54,27 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .brand em{font-style:italic;color:var(--rose);}
 .hdr-r{display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
 #clock{color:var(--text-mid);}
-.sel-body{flex:1;display:flex;flex-direction:column;align-items:stretch;padding:0;gap:0;overflow:hidden;}
-.epg-top{padding:9px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-lt);flex-shrink:0;}
-.epg-now-label{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--rose);display:flex;align-items:center;gap:7px;font-weight:300;}
-.epg-live-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);animation:epgpulse 1.4s ease infinite;}
-@keyframes epgpulse{0%,100%{opacity:1;}50%{opacity:.18;}}
-.epg-hint{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
-.epg-ruler{display:flex;padding-left:96px;border-bottom:1px solid var(--border-lt);flex-shrink:0;overflow:hidden;}
-.epg-t{flex:1;font-size:8px;letter-spacing:2px;font-weight:300;color:var(--text-dim);padding:6px 10px;border-left:1px solid var(--border-lt);white-space:nowrap;}
-.epg-t.now{color:var(--rose);font-weight:400;}
-.epg-grid{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;padding:12px 18px;gap:10px;-webkit-overflow-scrolling:touch;}
-.epg-grid::-webkit-scrollbar{width:3px;}
-.epg-grid::-webkit-scrollbar-thumb{background:var(--border);}
-.epg-row{display:flex;align-items:stretch;min-height:96px;}
-.epg-ch{width:96px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid var(--border-lt);border-right:none;background:var(--panel);gap:4px;}
-.epg-ch-num{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:300;}
-.epg-ch-name{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:600;text-align:center;line-height:1.2;color:var(--text);}
-.epg-prog{flex:1;display:flex;background:var(--panel);border:1px solid var(--border);cursor:pointer;overflow:hidden;position:relative;transition:border-color .25s,box-shadow .25s;}
-.epg-prog:hover{border-color:var(--rose-mid);box-shadow:0 4px 24px rgba(196,120,143,.13);}
-.epg-prog::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(196,120,143,.018) 3px,rgba(196,120,143,.018) 4px);}
-.epg-thumb{width:128px;flex-shrink:0;background-size:cover;background-position:center;position:relative;}
-.epg-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--panel) 100%);}
-.epg-live-badge{position:absolute;top:8px;left:8px;z-index:2;background:var(--rose);color:#fff8fc;font-size:6px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;display:flex;align-items:center;gap:4px;font-weight:400;}
-.epg-live-dot2{width:4px;height:4px;border-radius:50%;background:#fff8fc;animation:epgpulse 1.2s ease infinite;}
-.epg-prog-info{padding:12px 14px 24px;display:flex;flex-direction:column;justify-content:center;gap:5px;flex:1;overflow:hidden;position:relative;z-index:1;}
-.epg-prog-title{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,22px);font-weight:600;line-height:1.1;color:var(--text);}
-.epg-prog-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;font-weight:300;color:var(--text-mid);}
-.epg-prog-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:3px;}
-.epg-prog-yr{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:200;}
+.sel-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 26px 26px;gap:20px;overflow:hidden;}
+.sel-title{text-align:center;}
+.sel-title .deco{font-size:9px;letter-spacing:8px;display:block;color:var(--rose-mid);margin-bottom:8px;font-weight:300;}
+.sel-title h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(20px,3.5vw,32px);letter-spacing:2px;}
+.sel-title .rule{width:50px;height:1px;background:var(--border);margin:10px auto 0;}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:1020px;}
+.ch-card{background:var(--panel);border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;overflow:hidden;box-shadow:0 2px 18px var(--shadow);transition:border-color .28s,box-shadow .28s,transform .22s;}
+.ch-card:hover{border-color:var(--rose-mid);box-shadow:0 6px 36px rgba(196,120,143,.13);transform:translateY(-4px);}
+.ch-card:active{transform:translateY(-1px) scale(.99);}
+.card-thumb{width:100%;aspect-ratio:16/10;background-size:cover;background-position:center;flex-shrink:0;position:relative;overflow:hidden;}
+.card-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(252,238,245,.7) 100%);}
+.card-ch{position:absolute;top:9px;left:9px;z-index:1;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:300;background:rgba(252,238,245,.9);padding:3px 9px;border:1px solid var(--border);}
+.card-info{padding:13px 15px 9px;flex:1;display:flex;flex-direction:column;gap:5px;}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,22px);font-weight:600;line-height:1.15;color:var(--text);}
+.card-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(11px,1.3vw,13px);color:var(--text-mid);}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
 .tag{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);background:var(--rose-xlt);padding:2px 7px;border:1px solid var(--rose-lt);font-weight:300;}
-.epg-cta{position:absolute;right:12px;bottom:14px;z-index:2;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:300;color:var(--rose);}
-.epg-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--border-lt);}
-.epg-bar-fill{height:100%;background:linear-gradient(90deg,var(--rose-lt),var(--rose-mid));}
-.epg-next{width:130px;flex-shrink:0;border:1px solid var(--border-lt);border-left:none;background:var(--rose-xlt);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:3px;opacity:.6;}
-.epg-next-label{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
-.epg-next-title{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:400;color:var(--text-mid);text-align:center;line-height:1.3;}
-.epg-footer{padding:8px 18px;border-top:1px solid var(--border-lt);display:flex;align-items:center;gap:11px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;flex-shrink:0;}
+.card-ft{padding:8px 15px;border-top:1px solid var(--border-lt);display:flex;align-items:center;justify-content:space-between;}
+.card-yr{font-size:8px;letter-spacing:2px;color:var(--text-dim);font-weight:200;}
+.card-cta{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:300;color:var(--rose);}
+.idle-row{display:flex;align-items:center;gap:11px;width:100%;max-width:1020px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
 .idle-track{flex:1;height:1px;background:var(--border-lt);position:relative;overflow:hidden;}
 .idle-fill{position:absolute;inset:0;background:var(--rose-mid);width:100%;}
 
@@ -224,13 +209,13 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
     <div class="hdr-r"><span id="clock">--:--</span><span>Select a Programme</span></div>
   </div>
   <div class="sel-body">
-    <div class="epg-top">
-      <div class="epg-now-label"><div class="epg-live-dot"></div>Live Programme Guide</div>
-      <div class="epg-hint">Select a channel to tune in</div>
+    <div class="sel-title">
+      <span class="deco">✦ · ✦ · ✦</span>
+      <h2>Please select a programme</h2>
+      <div class="rule"></div>
     </div>
-    <div class="epg-ruler" id="epg-ruler"></div>
-    <div class="epg-grid"  id="epg-grid"></div>
-    <div class="epg-footer">
+    <div class="cards" id="cards"></div>
+    <div class="idle-row">
       <span>Returning in</span>
       <div class="idle-track"><div class="idle-fill" id="sel-fill"></div></div>
       <span id="sel-num">5s</span>
@@ -283,8 +268,20 @@ const PROJECTS = [
   {
     channel:'Ch. I', name:'Flights & Dreams', subtitle:'Multi-Style Corset Bag',
     year:'2024', tags:['Accessories','Fashion','Corsetry'],
-    desc:'A multi-way corset bag designed to transform with its wearer — interchangeable wing sets shift from delicate bunny to dramatic black, each telling a different story. Fully functional with interior pockets, a colour-changing wing mechanism, and a corset-lacing system that adjusts the silhouette.',
-    thumb: p(BAG,'bunny-dressCoord2_MultiWayBagOfFlightsAndDreams.jpg'),
+    desc: `Inspired by Japanese Lolita fashion, one of the highlights of this bag is the corset-style ribbon weaving that connects the two straps. This allows the wearer to easily adjust how securely the bag fits against their back.<br><br>
+    
+    Its most prominent feature is the interchangeable accessory sets. You can customize the bag using sewn-in snap fasteners and clips:<br><br>
+    
+    The Wings & Devil Tail: The wings can be attached to the straps to make it look like the wearer has wings, or they can be secured directly to the back of the bag itself.<br><br>
+    
+    The Rabbit Ears & Tail: The wings and devil tail can be snapped off and replaced with rabbit ears that attach to the bag's flap, while the rabbit tail clips onto a D-ring hanging at the bottom.<br><br>
+    
+    Another highlight the wings is their color-changing feature. I painted one entire side with black thermochromic paint, which turns white when exposed to heat. If you spend enough time in the sun, the black "fallen angel/devil" wings will transform into white angel wings (devil in the darkness/shadows, angel in the light)! For even more design variation, the reverse side of the wings features the thermochromic paint only along the bottom edge.<br><br>
+    
+    The bag is also fully lined and includes a small interior pocket.<br><br>
+    
+    To complete the set, I made a matching headdress. The included photos feature me modeling the bag, dressed up in J-fashion to perfectly fit the theme!`,
+    thumb: p(BAG, 'bunny-dressCoord2_MultiWayBagOfFlightsAndDreams.jpg'),
     attract:[
       p(BAG,'bunny-dressCoord_MultiWayBagOfFlightsAndDreams.jpg'),
       p(BAG,'blackWings-hall-side_MultiWayBagOfFlightsAndDreams.jpg'),
@@ -326,7 +323,7 @@ const PROJECTS = [
   {
     channel:'Ch. II', name:'Angel of Death', subtitle:'Eagle Night Lamp',
     year:'2023', tags:['Lighting','3D Print','Electronics'],
-    desc:'A handcrafted eagle lamp with a detachable moon-girl figure — engineered from scratch with custom 3D-printed parts, laser-cut components, and programmable RGB lighting. Seven structural pieces assemble into a winged silhouette that glows in any colour.',
+    desc:'A hand-assembled eagle lamp with a moon-girl figural lamp that can be hooked onto its feet. Engineered wing and tail holes from scratch when creating custom 3D-printed parts. I assembled seven split pieces of the lamp. Then installed a remote-controlled + color-customizable RGB lighting and battery into the interior of the lamp. The once wingless eagle shines its beautiful feathers in the dark.',
     thumb: p(LAMP,'eagle_night_lamp_main_image.jpg'),
     attract:[
       p(LAMP,'eagle_lamp_blue_wings_moon_on.jpg'),
@@ -373,7 +370,11 @@ const PROJECTS = [
   {
     channel:'Ch. III', name:'Orca Music Box', subtitle:'Automaton',
     year:'2023', tags:['Woodwork','Automaton','Mechanism'],
-    desc:'A handcrafted wooden automaton housing a removable music box mechanism — activated by a hand crank that sets the orca atop its vessel in motion. Designed in 3D, prototyped in cardboard, then built in wood with a sliding drawer that locks the music box in place.',
+    desc:`I am an avid music box collector with over 50 thrifted pieces in my collection. As a child, I loved visiting aquariums and was completely obsessed with dolphins, whales, and especially orcas. This project is a homage to my childhood, combining two things I grew up loving: music boxes and the ocean.
+
+    The result is a handcrafted wooden musical automaton housing a removable music box mechanism. As you turn the winding hand crank, the tune plays and sets the orca atop the vessel in motion, making it "swim" to the music. The piece is built with a sliding drawer and shelf with attached velcro that holds the music box in place while also doubling as a place to store small trinkets.
+
+    Bringing this piece to life was a multi-step process. I started by prototyping the mechanics in cardboard, then designed the final components using Blender, Autodesk Fusion 360, and Adobe Illustrator. From there, the orca was 3D printed, while the wooden box and drawer were laser-cut and carefully hand-assembled through traditional woodworking and sanding.`,
     thumb: p(ORCA,'Orca-Music-Box-Automaton-Vessel-Solid-Background-Angle-3.png'),
     attract:[
       p(ORCA,'orca-automaton_3D-model-underwater.jpg'),
@@ -517,54 +518,27 @@ function startAttract(){
 $scr.attract.addEventListener('click', ()=>{ clearInterval(attTimer); goTo('select'); startIdle(); });
 
 // ── BUILD CARDS ───────────────────────────────
-// ── BUILD EPG RULER ───────────────────────────
-(function buildRuler(){
-  const ruler = document.getElementById('epg-ruler');
-  const now   = new Date();
-  const fmt   = d => d.getHours().toString().padStart(2,'0') + ':' + (d.getMinutes()<30?'00':'30');
-  const seen  = new Set();
-  [-60,-30,0,30,60,90].forEach(off => {
-    const d = new Date(now.getTime() + off*60000);
-    const label = fmt(d);
-    if(seen.has(label)) return; seen.add(label);
-    const cell = document.createElement('div');
-    cell.className = 'epg-t' + (off===0?' now':'');
-    cell.textContent = off===0 ? '▶ '+label : label;
-    ruler.appendChild(cell);
-  });
-})();
-
-// ── BUILD EPG ROWS ────────────────────────────
-const COMING_UP = ['Behind the Scenes','Making Of','Director\'s Cut'];
 PROJECTS.forEach((pr,i) => {
-  const prog = 28 + i*18;
-  const row  = document.createElement('div');
-  row.className = 'epg-row';
-  row.innerHTML = `
-    <div class="epg-ch">
-      <div class="epg-ch-num">${pr.channel}</div>
-      <div class="epg-ch-name">${pr.name}</div>
+  const ni = pr.media.filter(m=>m.type==='image').length;
+  const nv = pr.media.filter(m=>m.type==='video').length;
+  const card = document.createElement('div');
+  card.className = 'ch-card';
+  card.innerHTML = `
+    <div class="card-thumb" style="background-image:url('${pr.thumb}')">
+      <span class="card-ch">${pr.channel}</span>
     </div>
-    <div class="epg-prog">
-      <div class="epg-thumb" style="background-image:url('${pr.thumb}')"></div>
-      <div class="epg-live-badge"><div class="epg-live-dot2"></div>Now Airing</div>
-      <div class="epg-prog-info">
-        <div class="epg-prog-title">${pr.name}</div>
-        <div class="epg-prog-sub">${pr.subtitle}</div>
-        <div class="epg-prog-meta">
-          <span class="epg-prog-yr">${pr.year}</span>
-          ${pr.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
-        </div>
-      </div>
-      <div class="epg-cta">Tune in ›</div>
-      <div class="epg-bar"><div class="epg-bar-fill" style="width:${prog}%"></div></div>
+    <div class="card-info">
+      <div class="card-name">${pr.name}</div>
+      <div class="card-sub">${pr.subtitle}</div>
+      <div class="card-tags">${pr.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
     </div>
-    <div class="epg-next">
-      <div class="epg-next-label">Up Next</div>
-      <div class="epg-next-title">${COMING_UP[i]}</div>
+    <div class="card-ft">
+      <span class="card-yr">${pr.year} · ${ni} photos${nv?` · ${nv} video${nv>1?'s':''}`:''}
+      </span>
+      <span class="card-cta">View ›</span>
     </div>`;
-  row.querySelector('.epg-prog').addEventListener('click', ()=>openProject(i));
-  document.getElementById('epg-grid').appendChild(row);
+  card.addEventListener('click', ()=>openProject(i));
+  cardsEl.appendChild(card);
 });
 
 // ── SCREEN TRANSITIONS ────────────────────────
