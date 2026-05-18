@@ -93,7 +93,7 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .det-scroll::-webkit-scrollbar{width:3px;}
 .det-scroll::-webkit-scrollbar-thumb{background:var(--border);}
 .det-inner{padding:26px;max-width:1160px;margin:0 auto;}
-.hero{width:100%;height:clamp(200px,50vh,480px);background-size:cover;background-position:center;border:1px solid var(--border-lt);margin-bottom:20px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .2s;}
+.hero{width:100%;height:clamp(200px,50vh,480px);background-size:contain;background-position:center;border:1px solid var(--border-lt);margin-bottom:20px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .2s;}
 .hero:hover{border-color:var(--rose-mid);}
 .hero-cap{position:absolute;bottom:0;left:0;right:0;padding:6px 14px;background:rgba(252,238,245,.88);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;font-weight:300;color:var(--text-mid);}
 .det-info-row{display:flex;gap:34px;margin-bottom:28px;flex-wrap:wrap;}
@@ -104,7 +104,7 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .sec-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dim);font-weight:300;margin-bottom:11px;display:flex;align-items:center;gap:12px;}
 .sec-lbl::before,.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border-lt);}
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(120px,16vw,190px),1fr));gap:5px;margin-bottom:28px;}
-.p-item{aspect-ratio:4/3;background-size:cover;background-position:center;background-color:var(--rose-xlt);border:1px solid var(--border-lt);cursor:pointer;position:relative;overflow:hidden;transition:border-color .18s,opacity .18s;}
+.p-item{aspect-ratio:4/3;background-size:contain;background-position:center;background-color:var(--rose-xlt);border:1px solid var(--border-lt);cursor:pointer;position:relative;overflow:hidden;transition:border-color .18s,opacity .18s;}
 .p-item:hover{border-color:var(--rose-mid);}
 .p-item:active{opacity:.82;}
 .p-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(252,238,245,.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;font-weight:300;color:var(--text-mid);padding:3px 7px;opacity:0;transition:opacity .18s;}
@@ -117,6 +117,9 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 /* LIGHTBOX */
 /*#lb{position:fixed;inset:0;z-index:9000;background:rgba(26,11,18,.96);display:none;flex-direction:column;align-items:center;justify-content:center;}
 #lb.open{display:flex;} */
+
+#lb-content { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  
 #lb::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:10;box-shadow:inset 0 0 0 1px rgba(196,120,143,.25),inset 0 0 0 7px rgba(196,120,143,.09);}
 .lb-bar{position:absolute;top:0;left:0;right:0;padding:13px 20px;z-index:11;display:flex;align-items:center;justify-content:space-between;}
 .lb-ctr{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(219,165,184,.42);font-weight:300;}
@@ -141,17 +144,8 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 
 /* Attract slide smart-fit */
 .att-slide-contain {
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
   background-color: #1a0b12;
-  /* lace tile behind negative space */
-  background-image:
-    radial-gradient(circle, rgba(196,120,143,.18) 1px, transparent 1px),
-    radial-gradient(circle, rgba(196,120,143,.10) 1px, transparent 1px),
-    url("PLACEHOLDER"); /* overwritten by JS */
-  background-size: 28px 28px, 14px 14px, contain !important;
-  background-position: 0 0, 7px 7px, center !important;
+  /* all bg properties set inline by JS — do not add background-size/position here */
 }
 /* Two portrait photos side by side */
 .att-slide-duo {
@@ -456,8 +450,21 @@ async function buildAttractSlides() {
       // Very wide images that crop badly also get contain
       const tooWide = item.w > item.h * 2.2;
       d.style.backgroundImage = `url("${item.src}")`;
-      if (isTall || tooWide) d.classList.add('att-slide-contain');
-    }
+      if (isTall || tooWide) {
+        d.classList.add('att-slide-contain');
+        d.style.cssText = `
+          background-image:
+            radial-gradient(circle, rgba(196,120,143,.18) 1px, transparent 1px),
+            radial-gradient(circle, rgba(196,120,143,.10) 1px, transparent 1px),
+            url("${item.src}");
+          background-size: 28px 28px, 14px 14px, contain;
+          background-position: 0 0, 7px 7px, center;
+          background-repeat: repeat, repeat, no-repeat;
+          background-color: #1a0b12;
+        `;
+      } else {
+        d.style.backgroundImage = `url("${item.src}")`;
+      }
     attSlidesEl.appendChild(d);
   });
 }
