@@ -115,8 +115,8 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
 .vid-cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;font-weight:300;color:var(--text-dim);padding:4px 2px;}
 
 /* LIGHTBOX */
-#lb{position:fixed;inset:0;z-index:9000;background:rgba(26,11,18,.96);display:none;flex-direction:column;align-items:center;justify-content:center;}
-#lb.open{display:flex;}
+/*#lb{position:fixed;inset:0;z-index:9000;background:rgba(26,11,18,.96);display:none;flex-direction:column;align-items:center;justify-content:center;}
+#lb.open{display:flex;} */
 #lb::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:10;box-shadow:inset 0 0 0 1px rgba(196,120,143,.25),inset 0 0 0 7px rgba(196,120,143,.09);}
 .lb-bar{position:absolute;top:0;left:0;right:0;padding:13px 20px;z-index:11;display:flex;align-items:center;justify-content:space-between;}
 .lb-ctr{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(219,165,184,.42);font-weight:300;}
@@ -137,6 +137,48 @@ body{background:var(--bg);color:var(--text);font-family:'Josefin Sans',sans-seri
   .lb-stage{padding:60px 44px;}
 }
 @media(max-width:480px){.det-inner{padding:14px;}.hero{height:clamp(180px,40vh,320px);}}
+
+
+/* Attract slide smart-fit */
+.att-slide-contain {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-color: #1a0b12;
+  /* lace tile behind negative space */
+  background-image:
+    radial-gradient(circle, rgba(196,120,143,.18) 1px, transparent 1px),
+    radial-gradient(circle, rgba(196,120,143,.10) 1px, transparent 1px),
+    url("PLACEHOLDER"); /* overwritten by JS */
+  background-size: 28px 28px, 14px 14px, contain !important;
+  background-position: 0 0, 7px 7px, center !important;
+}
+/* Two portrait photos side by side */
+.att-slide-duo {
+  display: flex !important;
+  gap: 3px;
+  background: #1a0b12 !important;
+}
+.att-half {
+  flex: 1; height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+}
+
+/* Lightbox — use opacity toggle instead of display:none */
+#lb {
+  position:fixed; inset:0; z-index:9000;
+  background:rgba(26,11,18,.96);
+  display: flex;   /* always flex, hidden by opacity */
+  flex-direction:column;
+  align-items:center; justify-content:center;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+#lb.open { opacity: 1; visibility: visible; pointer-events: all; }
+  
 </style>
 </head>
 <body>
@@ -369,17 +411,64 @@ const detFill  = document.getElementById('det-fill');
 const lbEl     = document.getElementById('lb');
 
 // ── BUILD ATTRACT SLIDES ──────────────────────
-const attractAll = PROJECTS.flatMap(pr => pr.attract);
-attractAll.forEach((src,i) => {
-  const d = document.createElement('div');
-  d.className = 'att-slide' + (i===0?' on':'');
-  d.style.backgroundImage = `url("${src}")`;
-  attSlidesEl.appendChild(d);
-});
-function advanceAttract(){
+// Build attract slides — ALL images, Orca first, portrait-aware
+const projectOrder = [2, 0, 1]; // Orca → Bag → Lamp
+const attractAll = projectOrder.flatMap(i =>
+  PROJECTS[i].media.filter(m => m.type === 'image')
+);
+
+async function buildAttractSlides() {
+  // Load every image to detect portrait vs landscape
+  const loaded = await Promise.all(attractAll.map(item => new Promise(resolve => {
+    const im = new Image();
+    im.onload  = () => resolve({ ...item, w: im.naturalWidth,  h: im.naturalHeight });
+    im.onerror = () => resolve({ ...item, w: 2, h: 1 }); // fallback landscape
+    im.src = item.src;
+  })));
+
+  // Group consecutive portraits into pairs
+  const groups = [];
+  let i = 0;
+  while (i < loaded.length) {
+    const cur  = loaded[i];
+    const isP  = cur.h > cur.w * 1.15;
+    const next = loaded[i + 1];
+    const nextIsP = next && next.h > next.w * 1.15;
+    if (isP && nextIsP) { groups.push([cur, next]); i += 2; }
+    else                { groups.push([cur]);        i += 1; }
+  }
+
+  groups.forEach((group, idx) => {
+    const d = document.createElement('div');
+    d.className = 'att-slide' + (idx === 0 ? ' on' : '');
+
+    if (group.length === 2) {
+      d.classList.add('att-slide-duo');
+      group.forEach(item => {
+        const half = document.createElement('div');
+        half.className = 'att-half';
+        half.style.backgroundImage = `url("${item.src}")`;
+        d.appendChild(half);
+      });
+    } else {
+      const item  = group[0];
+      const isTall = item.h > item.w * 1.15;
+      // Very wide images that crop badly also get contain
+      const tooWide = item.w > item.h * 2.2;
+      d.style.backgroundImage = `url("${item.src}")`;
+      if (isTall || tooWide) d.classList.add('att-slide-contain');
+    }
+    attSlidesEl.appendChild(d);
+  });
+}
+
+buildAttractSlides();
+  
+function advanceAttract() {
   const sl = attSlidesEl.querySelectorAll('.att-slide');
-  sl[attIdx].classList.remove('on');
-  attIdx = (attIdx+1) % sl.length;
+  if (!sl.length) return;
+  sl[attIdx % sl.length].classList.remove('on');
+  attIdx = (attIdx + 1) % sl.length;
   sl[attIdx].classList.add('on');
 }
 function startAttract(){
