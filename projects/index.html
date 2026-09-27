@@ -313,6 +313,35 @@
             66% { transform: translate(-50px, 100px) rotate(240deg); }
         }
 
+        .construction-banner {
+            max-width: 720px;
+            margin: 0 auto 50px;
+            padding: 24px 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 2px dashed rgba(255, 145, 199, 0.6);
+            box-shadow: 0 10px 40px rgba(130, 197, 255, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .construction-banner h2 {
+            color: #ff91c7;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .construction-banner p {
+            color: #6b5b7a;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .construction-banner .project-link {
+            display: inline-block;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .projects-grid { 
@@ -334,6 +363,12 @@
     <a href="../" class="nav-home">←</a>
 
     <div class="container">
+        <div class="construction-banner">
+            <h2>This page is under construction</h2>
+            <p>In the meantime, here's a downloadable PDF of selected works in UI/UX, graphic, and product design.</p>
+            <a href="../assets/portfolio/Ah-RheemJoo_CuratedPortfolio_UIUX-Graphic-Product_Updated9-21-2026_PICSEpgAdded.pdf" class="project-link" target="_blank" rel="noopener">View / Download Portfolio PDF &darr;</a>
+        </div>
+
         <header>
             <h1>Projects</h1>
             <p class="subtitle">What I have worked on</p>
